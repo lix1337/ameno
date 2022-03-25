@@ -3,4 +3,7 @@
 ## Author: Djmilfraptor
 ## Version: 0.1
 
+libs\LibStub\LibStub.lua
+libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+embeds.xml
 main.lua
