@@ -16,7 +16,11 @@ jobs:
       - name: Create archive
         run: |
           mkdir ameno
-          cp -R /* /ameno
+          cp -R libs ./ameno
+          cp -R sound ./ameno
+          cp ameno.toc ./ameno
+          cp embeds.xml ./ameno
+          cp main.lua ./ameno
           zip -r ameno.zip ./ameno
 
       - name: Set outputs
