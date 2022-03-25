@@ -1,0 +1,6 @@
+## Interface: 90200
+## Title: Amenø
+## Author: Djmilfraptor
+## Version: 0.01
+
+main.lua
