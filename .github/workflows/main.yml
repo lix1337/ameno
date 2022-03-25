@@ -13,10 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      # Set commit sha as variable
       - name: Set outputs
         id: vars
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
 
+      # Copy desired files in new folder and create archive
       - name: Create archive
         run: |
           mkdir ameno
@@ -27,6 +29,7 @@ jobs:
           cp main.lua ./ameno
           zip -r ameno-${{ steps.vars.outputs.sha_short }}.zip ./ameno
           
+      # Create a new release
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -38,6 +41,7 @@ jobs:
           draft: false
           prerelease: false
 
+      # Add archive to release
       - name: Upload Release Asset
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
