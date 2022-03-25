@@ -15,6 +15,7 @@ jobs:
 
       - name: Create archive
         run: |
+          mkdir ameno
           cp -R /* /ameno
           zip -r ameno.zip ./ameno
 
