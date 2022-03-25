@@ -16,6 +16,7 @@ jobs:
       - name: Create archive
         run: |
           zip -r ameno.zip ./*
+          echo "git_hash=$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_HASH
           
       - name: Create Release
         id: create_release
