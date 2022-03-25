@@ -15,7 +15,8 @@ jobs:
 
       - name: Create archive
         run: |
-          zip -r ameno.zip ./*
+          cp -R /* /ameno
+          zip -r ameno.zip ./ameno
 
       - name: Set outputs
         id: vars
