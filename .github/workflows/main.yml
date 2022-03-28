@@ -25,6 +25,7 @@ jobs:
           mkdir ameno
           cp -R libs ./ameno
           cp -R sound ./ameno
+          cp -R background ./ameno
           cp ameno.toc ./ameno
           cp embeds.xml ./ameno
           cp main.lua ./ameno
