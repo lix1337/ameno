@@ -1,6 +1,11 @@
 local debug = false
 local LSM = LibStub("LibSharedMedia-3.0") 
 
+--ameno
+LSM:Register("sound", "Ameno: Ameno male", [[Interface\Addons\ameno\sound\ameno_male.ogg]])
+LSM:Register("sound", "Ameno: Ameno female", [[Interface\Addons\ameno\sound\ameno_female.ogg]])
+LSM:Register("sound", "Ameno: Ameno Melodie no beat", [[Interface\Addons\ameno\sound\ameno_melodie_noBeat.ogg]])
+
 --Spieler sounds
 LSM:Register("sound", "Ameno: Table_Smash", [[Interface\Addons\ameno\sound\tableSmash.ogg]])
 
@@ -24,8 +29,16 @@ LSM:Register("sound", "Ameno: Montanablack Bruder", [[Interface\Addons\ameno\sou
 LSM:Register("sound", "Ameno: Montanablack Ende", [[Interface\Addons\ameno\sound\montanablack_ende.ogg]]) 
 LSM:Register("sound", "Ameno: Montanablack Digga wer Bruder", [[Interface\Addons\ameno\sound\montanablack_diggaWerBruder.ogg]]) 
 
+--lieblingsfach
+LSM:Register("sound", "Ameno: Lieblingsfach Englisch", [[Interface\Addons\ameno\sound\lieblingsfach_englisch.ogg]]) 
+LSM:Register("sound", "Ameno: Lieblingsfach Turnen", [[Interface\Addons\ameno\sound\lieblingsfach_turnen.ogg]]) 
+LSM:Register("sound", "Ameno: Was ist dein Lieblingsfach", [[Interface\Addons\ameno\sound\lieblingsfach_wasIstDeinLiebslingsfach.ogg]]) 
+
 --other stuff
 LSM:Register("sound", "Ameno: World_First", [[Interface\Addons\ameno\sound\worldFirst.ogg]]) 
+
+--background
+LSM:Register("background", "Carlos Matos", [[Interface\Addons\ameno\background\carlosMatos.tga]])
 
 
 
@@ -48,18 +61,18 @@ frameJailerAv:RegisterEvent("ACHIEVEMENT_EARNED")
 frameJailerAv:SetScript("OnEvent", checkForAotcJailer)
 
 
-
--- Chat check for later development, if a group or raid chat shall be parsed
---[[local function chatCheck(self, event, ...)
+local function chatCheck(self, event, ...)
     local text = ...
 
-    if(text == "p") then
-        --do stuff
+    if(text == "!englisch") then
+        PlaySoundFile("Interface\\Addons\\ameno\\sound\\lieblingsfach_englisch.ogg","Master")
+    elseif(text== "!turnen") then
+        PlaySoundFile("Interface\\Addons\\ameno\\sound\\lieblingsfach_turnen.ogg","Master")
+    elseif(text == "!lieblingsfach") then
+        PlaySoundFile("Interface\\Addons\\ameno\\sound\\lieblingsfach_wasIstDeinLiebslingsfach.ogg","Master")
     end
-
 end
 
-frameChat:RegisterEvent("CHAT_MSG_PARTY")
-frameChat:RegisterEvent("CHAT_MSG_PARTY_LEADER")
+local frameChat = CreateFrame("frame")
+frameChat:RegisterEvent("CHAT_MSG_RAID_LEADER")
 frameChat:SetScript("OnEvent", chatCheck)
-]]--
