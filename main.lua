@@ -70,6 +70,8 @@ local function chatCheck(self, event, ...)
         PlaySoundFile("Interface\\Addons\\ameno\\sound\\lieblingsfach_turnen.ogg","Master")
     elseif(text == "!lieblingsfach") then
         PlaySoundFile("Interface\\Addons\\ameno\\sound\\lieblingsfach_wasIstDeinLiebslingsfach.ogg","Master")
+        message = _lieblingsfach .. " ist mein Lieblingsfach!"
+        SendChatMessage(message, "raid")
     end
 end
 
