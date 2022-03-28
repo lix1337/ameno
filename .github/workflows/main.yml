@@ -29,6 +29,7 @@ jobs:
           cp ameno.toc ./ameno
           cp embeds.xml ./ameno
           cp main.lua ./ameno
+          cp settings.lua ./ameno
           zip -r ameno-${{ steps.get_release.outputs.tag_name }}.zip ./ameno
 
       # Add archive to release
