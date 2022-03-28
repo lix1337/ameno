@@ -2,7 +2,7 @@ name: CI
 
 on:
   release:
-    types: [published]
+    types: [created]
 
   workflow_dispatch:
 
@@ -13,6 +13,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Get release
+        id: get_release
+        uses: bruceadams/get-release@v1.2.3
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
       # Copy desired files in new folder and create archive
       - name: Create Archive
         run: |
@@ -22,13 +28,7 @@ jobs:
           cp ameno.toc ./ameno
           cp embeds.xml ./ameno
           cp main.lua ./ameno
-          zip -r ameno-${{ github.event.release.tag_name }}.zip ./ameno
-          
-      - name: Get release
-        id: get_release
-        uses: bruceadams/get-release@v1.2.3
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+          zip -r ameno-${{ steps.get_release.outputs.tag_name }}.zip ./ameno
 
       # Add archive to release
       - name: Upload Release Asset
