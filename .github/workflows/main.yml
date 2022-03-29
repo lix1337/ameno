@@ -18,6 +18,10 @@ jobs:
         uses: bruceadams/get-release@v1.2.3
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          
+      - name: Set version in toc
+        run: |
+          sed -i 's/{version}/{{ steps.get_release.outputs.tag_name }}/g' ameno.toc
 
       # Copy desired files in new folder and create archive
       - name: Create Archive
