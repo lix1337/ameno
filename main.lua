@@ -43,7 +43,8 @@ LSM:Register("sound", "Ameno: World_First", [[Interface\Addons\ameno\sound\world
 --background
 LSM:Register("background", "Carlos Matos", [[Interface\Addons\ameno\background\carlosMatos.tga]])
 
-
+--music
+LSM:Register("sound", "Geil, Geil, Geil", [[Interface\Addons\ameno\sound\geilgeilgeil.ogg]])
 
 
 --AOTC Jailer play sound
