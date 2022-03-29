@@ -32,6 +32,9 @@ LSM:Register("sound", "Ameno: Montanablack Digga wer Bruder", [[Interface\Addons
 --lieblingsfach
 LSM:Register("sound", "Ameno: Lieblingsfach Englisch", [[Interface\Addons\ameno\sound\lieblingsfach_englisch.ogg]]) 
 LSM:Register("sound", "Ameno: Lieblingsfach Turnen", [[Interface\Addons\ameno\sound\lieblingsfach_turnen.ogg]]) 
+LSM:Register("sound", "Ameno: Lieblingsfach Turnen", [[Interface\Addons\ameno\sound\lieblingsfach_kunst.ogg]]) 
+LSM:Register("sound", "Ameno: Lieblingsfach Turnen", [[Interface\Addons\ameno\sound\lieblingsfach_musik.ogg]]) 
+LSM:Register("sound", "Ameno: Lieblingsfach Turnen", [[Interface\Addons\ameno\sound\lieblingsfach_mathe.ogg]]) 
 LSM:Register("sound", "Ameno: Was ist dein Lieblingsfach", [[Interface\Addons\ameno\sound\lieblingsfach_wasIstDeinLiebslingsfach.ogg]]) 
 
 --other stuff
@@ -64,12 +67,9 @@ frameJailerAv:SetScript("OnEvent", checkForAotcJailer)
 local function chatCheck(self, event, ...)
     local text = ...
 
-    if(text == "!englisch") then
-        PlaySoundFile("Interface\\Addons\\ameno\\sound\\lieblingsfach_englisch.ogg","Master")
-    elseif(text== "!turnen") then
-        PlaySoundFile("Interface\\Addons\\ameno\\sound\\lieblingsfach_turnen.ogg","Master")
-    elseif(text == "!lieblingsfach") then
-        PlaySoundFile("Interface\\Addons\\ameno\\sound\\lieblingsfach_wasIstDeinLiebslingsfach.ogg","Master")
+    if(text == "!lieblingsfach") then
+        path = "Interface\\Addons\\ameno\\sound\\lieblingsfach_" .. string.lower(_lieblingsfach) .. ".ogg"
+        PlaySoundFile(path,"Master")
         message = _lieblingsfach .. " ist mein Lieblingsfach!"
         SendChatMessage(message, "raid")
     end

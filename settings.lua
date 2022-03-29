@@ -5,6 +5,9 @@ local eventFrame = CreateFrame("Frame", event, InterfaceOptionsFramePanelContain
 eventFrame:RegisterEvent("ADDON_LOADED")
 eventFrame:RegisterEvent("PLAYER_LOGOUT")
 
+-- If new subject is added, the parameter of the random() function during amenovars initiation has to be adapted to the number of items in this list
+favouriteSubjects = {'Englisch', 'Turnen', 'Mathe', 'Musik', 'Kunst'}
+
 --Create Dropdown
 --OPTS:
 --  name(string): Name of the dropdown (lowercase)
@@ -12,6 +15,7 @@ eventFrame:RegisterEvent("PLAYER_LOGOUT")
 -- items (Table): String table of the dropdown options
 -- defaultVal (String): String value for the dropdown to default to (empty otherwise)
 -- changeFunc (Function): A custom function to be called, after selecting a dropdown option
+-- source: https://jordanbenge.medium.com/creating-a-wow-dropdown-menu-in-pure-lua-db7b2f9c0364
 -- TODO: Put this in a lib
 local function createDropdown(opts)
     local dropdown_name = '$parent_' .. opts['name'] .. '_dropdown'
@@ -69,11 +73,13 @@ eventFrame:SetScript("OnEvent", function(self, event, loadedAddon)
     if (loadedAddon == addonName and event == "ADDON_LOADED") then
         --initiate amenovars, if first login
         if type(AMENOVARS) ~= "table" then
-            AMENOVARS = {lieblingsfach="Oder was"}
+            --random from 1 to number of items in favouriteSubjects -> needs to be changed manually if more items in the favouriteSubjects list
+            AMENOVARS = {lieblingsfach=favouriteSubjects[math.random(5)]}
         end
 
         --create global lieblingsfach
         _lieblingsfach = AMENOVARS.lieblingsfach
+        
 
         -- create interface options panel
         local panel = CreateFrame("FRAME", "ExamplePanel");
@@ -91,7 +97,7 @@ eventFrame:SetScript("OnEvent", function(self, event, loadedAddon)
             ['name'] = 'lieblingsfach',
             ['parent']=panel,
             ['title']='Lieblingsfach',
-            ['items'] = {'Englisch', 'Turnen', 'Oder was'},
+            ['items'] = favouriteSubjects,
             ['defaultVal']=_lieblingsfach,
             ['changeFunc']= function(_, dropdown_val)
                 _lieblingsfach = dropdown_val
