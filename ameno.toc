@@ -1,7 +1,7 @@
 ## Interface: 90200
 ## Title: ameno
 ## Author: Djmilfraptor
-## Version: 1.2
+## Version: 1.3
 ## SavedVariables: AMENOVARS
 
 libs\LibStub\LibStub.lua
