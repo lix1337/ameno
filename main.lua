@@ -40,11 +40,11 @@ LSM:Register("sound", "Ameno: Was ist dein Lieblingsfach", [[Interface\Addons\am
 --other stuff
 LSM:Register("sound", "Ameno: World_First", [[Interface\Addons\ameno\sound\worldFirst.ogg]]) 
 
+--music
+LSM:Register("sound", "Ameno: Geil, Geil, Geil", [[Interface\Addons\ameno\sound\geilgeilgeil.ogg]])
+
 --background
 LSM:Register("background", "Carlos Matos", [[Interface\Addons\ameno\background\carlosMatos.tga]])
-
---music
-LSM:Register("sound", "Geil, Geil, Geil", [[Interface\Addons\ameno\sound\geilgeilgeil.ogg]])
 
 
 --AOTC Jailer play sound
