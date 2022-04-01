@@ -8,6 +8,7 @@ LSM:Register("sound", "Ameno: Ameno Melodie no beat", [[Interface\Addons\ameno\s
 
 --Spieler sounds
 LSM:Register("sound", "Ameno: Table_Smash", [[Interface\Addons\ameno\sound\tableSmash.ogg]])
+LSM:Register("sound", "Ameno: Table_Smash", [[Interface\Addons\ameno\sound\ach_der_toni.ogg]])
 
 --Pizzeria am Rewemarkt
 LSM:Register("sound", "Ameno: Brafwursigehaeck", [[Interface\Addons\ameno\sound\brafwursigehaeck.ogg]]) 
