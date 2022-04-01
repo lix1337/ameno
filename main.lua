@@ -91,7 +91,7 @@ end)
 
 function deathFrame:OnEvent(self, ...)
     local _, subevent, _, _, _, _, _, _, destName, _, _, _, _ = ...;
-    if subevent == "UNIT_DIED" and UnitInRaid(destName) or UnitInGroup(destName) then
+    if subevent == "UNIT_DIED" and UnitInRaid(destName) or UnitInParty(destName) then
         isFeign = UnitIsFeignDeath("unit");
         if isFeign == false then
             if destName == "Testotôni" then
