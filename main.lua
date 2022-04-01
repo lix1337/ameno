@@ -81,20 +81,17 @@ frameChat:RegisterEvent("CHAT_MSG_RAID_LEADER")
 frameChat:SetScript("OnEvent", chatCheck)
 
 -- Play sound on player in raid death
-local frame = CreateFrame("FRAME")
-frame:RegisterEvent("ADDON_LOADED")
+local deathFrame = CreateFrame("FRAME")
+deathFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 
-local f = CreateFrame("FRAME")
-f:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-
-f:SetScript("OnEvent", function(self, event)
-	self:OnEvent(event, CombatLogGetCurrentEventInfo())
+deathFrame:SetScript("OnEvent", function(self, event)
+    self:OnEvent(event, CombatLogGetCurrentEventInfo())
 end)
 
-function f:OnEvent(self, ...)
-    local _, subevent, _, _, _, _, _, _, destName, _, _, _, _ = ...
+function deathFrame:OnEvent(self, ...)
+    local _, subevent, _, _, _, _, _, _, destName, _, _, _, _ = ...;
     if subevent == "UNIT_DIED" and UnitInRaid(destName) then
-        isFeign = UnitIsFeignDeath("unit")
+        isFeign = UnitIsFeignDeath("unit");
         if isFeign == false then
             PlaySoundFile("Interface\\Addons\\ameno\\sound\\tableSmash.ogg","Master")
         end
