@@ -85,15 +85,20 @@ local deathFrame = CreateFrame("FRAME")
 deathFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 
 deathFrame:SetScript("OnEvent", function(self, event)
-    self:OnEvent(event, CombatLogGetCurrentEventInfo())
+	self:OnEvent(event, CombatLogGetCurrentEventInfo())
 end)
 
 function deathFrame:OnEvent(self, ...)
-    local _, subevent, _, _, _, _, _, _, destName, _, _, _, _ = ...;
-    if subevent == "UNIT_DIED" and UnitInRaid(destName) then
-        isFeign = UnitIsFeignDeath("unit");
-        if isFeign == false then
-            PlaySoundFile("Interface\\Addons\\ameno\\sound\\tableSmash.ogg","Master")
-        end
+	local _, subevent, _, _, _, _, _, _, destName, _, _, _, _ = ...;
+	if subevent == "UNIT_DIED" then
+		isFeign = UnitIsFeignDeath("unit");
+		if isFeign == false then
+            if destName == "Testotôni" then
+                PlaySoundFile("Interface\\Addons\\ameno\\sound\\ach_der_toni.ogg","Master")
+            else
+                PlaySoundFile("Interface\\Addons\\ameno\\sound\\tableSmash.ogg","Master")
+            end
+		end
     end
 end
+
