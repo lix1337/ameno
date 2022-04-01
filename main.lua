@@ -92,7 +92,7 @@ end)
 function deathFrame:OnEvent(self, ...)
     local _, subevent, _, _, _, _, _, _, destName, _, _, _, _ = ...;
     if subevent == "UNIT_DIED" and (UnitInRaid(destName) or UnitInParty(destName)) then
-        isFeign = UnitIsFeignDeath("unit");
+        isFeign = UnitIsFeignDeath(destName)
         if isFeign == false then
             if destName == "Testotôni" then
                 PlaySoundFile("Interface\\Addons\\ameno\\sound\\ach_der_toni.ogg","Master")
