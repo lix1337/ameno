@@ -8,7 +8,7 @@ LSM:Register("sound", "Ameno: Ameno Melodie no beat", [[Interface\Addons\ameno\s
 
 --Spieler sounds
 LSM:Register("sound", "Ameno: Table_Smash", [[Interface\Addons\ameno\sound\tableSmash.ogg]])
-LSM:Register("sound", "Ameno: Table_Smash", [[Interface\Addons\ameno\sound\ach_der_toni.ogg]])
+LSM:Register("sound", "Ameno: Ach der Toni", [[Interface\Addons\ameno\sound\ach_der_toni.ogg]])
 
 --Pizzeria am Rewemarkt
 LSM:Register("sound", "Ameno: Brafwursigehaeck", [[Interface\Addons\ameno\sound\brafwursigehaeck.ogg]]) 
@@ -33,9 +33,9 @@ LSM:Register("sound", "Ameno: Montanablack Digga wer Bruder", [[Interface\Addons
 --lieblingsfach
 LSM:Register("sound", "Ameno: Lieblingsfach Englisch", [[Interface\Addons\ameno\sound\lieblingsfach_englisch.ogg]]) 
 LSM:Register("sound", "Ameno: Lieblingsfach Turnen", [[Interface\Addons\ameno\sound\lieblingsfach_turnen.ogg]]) 
-LSM:Register("sound", "Ameno: Lieblingsfach Turnen", [[Interface\Addons\ameno\sound\lieblingsfach_kunst.ogg]]) 
-LSM:Register("sound", "Ameno: Lieblingsfach Turnen", [[Interface\Addons\ameno\sound\lieblingsfach_musik.ogg]]) 
-LSM:Register("sound", "Ameno: Lieblingsfach Turnen", [[Interface\Addons\ameno\sound\lieblingsfach_mathe.ogg]]) 
+LSM:Register("sound", "Ameno: Lieblingsfach Kunst", [[Interface\Addons\ameno\sound\lieblingsfach_kunst.ogg]]) 
+LSM:Register("sound", "Ameno: Lieblingsfach Musik", [[Interface\Addons\ameno\sound\lieblingsfach_musik.ogg]]) 
+LSM:Register("sound", "Ameno: Lieblingsfach Mathe", [[Interface\Addons\ameno\sound\lieblingsfach_mathe.ogg]]) 
 LSM:Register("sound", "Ameno: Was ist dein Lieblingsfach", [[Interface\Addons\ameno\sound\lieblingsfach_wasIstDeinLiebslingsfach.ogg]]) 
 
 --other stuff
