@@ -7,28 +7,28 @@ LSM:Register("sound", "Ameno: Ameno female", [[Interface\Addons\ameno\sound\amen
 LSM:Register("sound", "Ameno: Ameno Melodie no beat", [[Interface\Addons\ameno\sound\ameno_melodie_noBeat.ogg]])
 
 --Spieler sounds
-LSM:Register("sound", "Ameno: Table_Smash", [[Interface\Addons\ameno\sound\tableSmash.ogg]])
+LSM:Register("sound", "Ameno: Table Smash", [[Interface\Addons\ameno\sound\tableSmash.ogg]])
 LSM:Register("sound", "Ameno: Ach der Toni", [[Interface\Addons\ameno\sound\ach_der_toni.ogg]])
 
 --Pizzeria am Rewemarkt
 LSM:Register("sound", "Ameno: Brafwursigehaeck", [[Interface\Addons\ameno\sound\brafwursigehaeck.ogg]]) 
 LSM:Register("sound", "Ameno: Hahnclieri", [[Interface\Addons\ameno\sound\hahnclieri.ogg]]) 
 
---montanablack
-LSM:Register("sound", "Ameno: Montanablack10", [[Interface\Addons\ameno\sound\montanablack_10.ogg]]) 
-LSM:Register("sound", "Ameno: Montanablack09", [[Interface\Addons\ameno\sound\montanablack_09.ogg]]) 
-LSM:Register("sound", "Ameno: Montanablack08", [[Interface\Addons\ameno\sound\montanablack_08.ogg]]) 
-LSM:Register("sound", "Ameno: Montanablack06", [[Interface\Addons\ameno\sound\montanablack_06.ogg]]) 
-LSM:Register("sound", "Ameno: Montanablack07", [[Interface\Addons\ameno\sound\montanablack_07.ogg]]) 
-LSM:Register("sound", "Ameno: Montanablack sechs sieben Digga wer Bruder", [[Interface\Addons\ameno\sound\montanablack_6_7_diggaWerBruder.ogg]]) 
-LSM:Register("sound", "Ameno: Montanablack05", [[Interface\Addons\ameno\sound\montanablack_05.ogg]]) 
-LSM:Register("sound", "Ameno: Montanablack04", [[Interface\Addons\ameno\sound\montanablack_04.ogg]]) 
-LSM:Register("sound", "Ameno: Montanablack03", [[Interface\Addons\ameno\sound\montanablack_03.ogg]]) 
-LSM:Register("sound", "Ameno: Montanablack02", [[Interface\Addons\ameno\sound\montanablack_02.ogg]]) 
-LSM:Register("sound", "Ameno: Montanablack01", [[Interface\Addons\ameno\sound\montanablack_01.ogg]]) 
-LSM:Register("sound", "Ameno: Montanablack Bruder", [[Interface\Addons\ameno\sound\montanablack_bruder.ogg]]) 
-LSM:Register("sound", "Ameno: Montanablack Ende", [[Interface\Addons\ameno\sound\montanablack_ende.ogg]]) 
-LSM:Register("sound", "Ameno: Montanablack Digga wer Bruder", [[Interface\Addons\ameno\sound\montanablack_diggaWerBruder.ogg]]) 
+--Monte
+LSM:Register("sound", "Ameno: Monte10", [[Interface\Addons\ameno\sound\mb_10.ogg]]) 
+LSM:Register("sound", "Ameno: Monte09", [[Interface\Addons\ameno\sound\mb_09.ogg]]) 
+LSM:Register("sound", "Ameno: Monte08", [[Interface\Addons\ameno\sound\mb_08.ogg]]) 
+LSM:Register("sound", "Ameno: Monte06", [[Interface\Addons\ameno\sound\mb_06.ogg]]) 
+LSM:Register("sound", "Ameno: Monte07", [[Interface\Addons\ameno\sound\mb_07.ogg]]) 
+LSM:Register("sound", "Ameno: Monte sechs sieben Digga wer Bruder", [[Interface\Addons\ameno\sound\mb_6_7_diggaWerBruder.ogg]]) 
+LSM:Register("sound", "Ameno: Monte05", [[Interface\Addons\ameno\sound\mb_05.ogg]]) 
+LSM:Register("sound", "Ameno: Monte04", [[Interface\Addons\ameno\sound\mb_04.ogg]]) 
+LSM:Register("sound", "Ameno: Monte03", [[Interface\Addons\ameno\sound\mb_03.ogg]]) 
+LSM:Register("sound", "Ameno: Monte02", [[Interface\Addons\ameno\sound\mb_02.ogg]]) 
+LSM:Register("sound", "Ameno: Monte01", [[Interface\Addons\ameno\sound\mb_01.ogg]]) 
+LSM:Register("sound", "Ameno: Monte Bruder", [[Interface\Addons\ameno\sound\mb_bruder.ogg]]) 
+LSM:Register("sound", "Ameno: Monte Ende", [[Interface\Addons\ameno\sound\mb_ende.ogg]]) 
+LSM:Register("sound", "Ameno: Monte Digga wer Bruder", [[Interface\Addons\ameno\sound\mb_diggaWerBruder.ogg]]) 
 
 --lieblingsfach
 LSM:Register("sound", "Ameno: Lieblingsfach Englisch", [[Interface\Addons\ameno\sound\lieblingsfach_englisch.ogg]]) 
@@ -39,7 +39,7 @@ LSM:Register("sound", "Ameno: Lieblingsfach Mathe", [[Interface\Addons\ameno\sou
 LSM:Register("sound", "Ameno: Was ist dein Lieblingsfach", [[Interface\Addons\ameno\sound\lieblingsfach_wasIstDeinLiebslingsfach.ogg]]) 
 
 --other stuff
-LSM:Register("sound", "Ameno: World_First", [[Interface\Addons\ameno\sound\worldFirst.ogg]]) 
+LSM:Register("sound", "Ameno: World First", [[Interface\Addons\ameno\sound\worldFirst.ogg]]) 
 
 --music
 LSM:Register("sound", "Ameno: Geil, Geil, Geil", [[Interface\Addons\ameno\sound\geilgeilgeil.ogg]])
@@ -81,7 +81,7 @@ local frameChat = CreateFrame("frame")
 frameChat:RegisterEvent("CHAT_MSG_RAID_LEADER")
 frameChat:SetScript("OnEvent", chatCheck)
 
--- Play sound on player in raid death
+-- Play sound on player death
 local deathFrame = CreateFrame("FRAME")
 deathFrame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 
