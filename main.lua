@@ -94,7 +94,7 @@ function deathFrame:OnEvent(self, ...)
     if subevent == "UNIT_DIED" and (UnitInRaid(destName) or UnitInParty(destName)) then
         isFeign = UnitIsFeignDeath(destName)
         if isFeign == false then
-            if destName == "Testotôni" then
+            if (destName == "Testotôni" or destName == "Testotôni-Blackrock") then
                 PlaySoundFile("Interface\\Addons\\ameno\\sound\\ach_der_toni.ogg","Master")
             else
                 PlaySoundFile("Interface\\Addons\\ameno\\sound\\tableSmash.ogg","Master")
