@@ -92,12 +92,12 @@ end)
 function deathFrame:OnEvent(self, ...)
     local _, subevent, _, _, _, _, _, _, destName, _, _, _, _ = ...
 
-    if string.find(destName, "-") then
-        local minusIndex = string.find(destName, "-") - 1
-        destName = string.sub(destName, 1, minusIndex)
-    end
-
     if subevent == "UNIT_DIED" and (UnitInRaid(destName) or UnitInParty(destName)) then
+        if string.find(destName, "-") then
+            local minusIndex = string.find(destName, "-") - 1
+            destName = string.sub(destName, 1, minusIndex)
+        end
+        
         local isFeign = UnitIsFeignDeath(destName)
         if isFeign == false then
             if (destName == "Testotôni") then
