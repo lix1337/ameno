@@ -90,11 +90,17 @@ deathFrame:SetScript("OnEvent", function(self, event)
 end)
 
 function deathFrame:OnEvent(self, ...)
-    local _, subevent, _, _, _, _, _, _, destName, _, _, _, _ = ...;
+    local _, subevent, _, _, _, _, _, _, destName, _, _, _, _ = ...
+
+    if string.find(destName, "-") then
+        local minusIndex = string.find(destName, "-") - 1
+        destName = string.sub(destName, 1, minusIndex)
+    end
+
     if subevent == "UNIT_DIED" and (UnitInRaid(destName) or UnitInParty(destName)) then
-        isFeign = UnitIsFeignDeath(destName)
+        local isFeign = UnitIsFeignDeath(destName)
         if isFeign == false then
-            if (destName == "Testotôni" or destName == "Testotôni-Blackrock") then
+            if (destName == "Testotôni") then
                 PlaySoundFile("Interface\\Addons\\ameno\\sound\\ach_der_toni.ogg","Master")
             else
                 PlaySoundFile("Interface\\Addons\\ameno\\sound\\tableSmash.ogg","Master")
