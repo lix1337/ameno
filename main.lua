@@ -9,6 +9,7 @@ LSM:Register("sound", "Ameno: Ameno Melodie no beat", [[Interface\Addons\ameno\s
 --Spieler sounds
 LSM:Register("sound", "Ameno: Table Smash", [[Interface\Addons\ameno\sound\tableSmash.ogg]])
 LSM:Register("sound", "Ameno: Ach der Toni", [[Interface\Addons\ameno\sound\ach_der_toni.ogg]])
+LSM:Register("sound", "Ameno: Noin", [[Interface\Addons\ameno\sound\noin.ogg]])
 
 --Pizzeria am Rewemarkt
 LSM:Register("sound", "Ameno: Brafwursigehaeck", [[Interface\Addons\ameno\sound\brafwursigehaeck.ogg]]) 
@@ -102,6 +103,8 @@ function deathFrame:OnEvent(self, ...)
         if isFeign == false then
             if (destName == "Testotôni") then
                 PlaySoundFile("Interface\\Addons\\ameno\\sound\\ach_der_toni.ogg","Master")
+            elseif (destName == "Mythgeburt") then
+                PlaySoundFile("Interface\\Addons\\ameno\\sound\\noin.ogg","Master")
             else
                 PlaySoundFile("Interface\\Addons\\ameno\\sound\\tableSmash.ogg","Master")
             end
