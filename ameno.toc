@@ -1,6 +1,6 @@
 ## Interface: 90200
 ## Title: ameno
-## Author: Djmilfraptor
+## Author: Djmilfraptor, r0mek
 ## Version: 1.4.6
 ## SavedVariables: AMENOVARS
 
