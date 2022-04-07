@@ -24,7 +24,6 @@ frame:SetScript("OnEvent", function(self, event)
     if player_death_sounds_db[unit_name] == nil then
         PlaySoundFile("Interface\\Addons\\ameno\\sound\\tableSmash.ogg", "Master")
     else
-        print("Playing ", player_death_sounds_db[unit_name])
         PlaySoundFile(player_death_sounds_db[unit_name], "Master")
     end
 end)

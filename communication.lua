@@ -28,5 +28,4 @@ function chat_massage_addon_callback(prefix, message, chatType, sender)
     end
 
     player_death_sounds_db[sender] = message
-    print("New death sound from", sender, "is:", player_death_sounds_db[sender])
 end
