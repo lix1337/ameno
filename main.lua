@@ -19,12 +19,21 @@ addon_loaded_frame:SetScript("OnEvent", function(self, event, loaded_addon)
     end
 
     if event == "ADDON_LOADED" then
-        -- Addon is first time loaded or changes to AMENOVARS got introduced with an update
-        if AMENOVARS.lieblingsfach == nil or AMENOVARS.my_death_sound == nil then
+        -- Setup AMENOVARS if addon is first time used
+        if type(AMENOVARS) ~= "table" then
             AMENOVARS = {
                 lieblingsfach = favorite_subjects[math.random(5)],
                 my_death_sound = smash
             }
+        end
+
+        -- Setup specific table values for backwards compatibility
+        if AMENOVARS.lieblingsfach == nil then
+            AMENOVARS.lieblingsfach = favorite_subjects[math.random(5)]
+        end
+
+        if AMENOVARS.my_death_sound == nil then
+            AMENOVARS.my_death_sound = smash
         end
 
         -- Notify everyone that i (re-)joined the channel
