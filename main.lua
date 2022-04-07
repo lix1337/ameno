@@ -2,8 +2,13 @@
 addon_name = ...
 favorite_subjects = {'Englisch', 'Turnen', 'Mathe', 'Musik', 'Kunst'}
 smash = "Interface\\Addons\\ameno\\sound\\tableSmash.ogg"
-valid_death_sounds = {smash, "Interface\\Addons\\ameno\\sound\\ach_der_toni.ogg",
-                      "Interface\\Addons\\ameno\\sound\\noin.ogg"}
+valid_death_sounds = {smash, 
+                      "Interface\\Addons\\ameno\\sound\\ach_der_toni.ogg",
+                      "Interface\\Addons\\ameno\\sound\\noin.ogg",
+                      "Interface\\Addons\\ameno\\sound\\mc_hit.ogg",
+                      "Interface\\Addons\\ameno\\sound\\mc_hurt.ogg",
+                      "Interface\\Addons\\ameno\\sound\\mc_villager.ogg",
+                      "Interface\\Addons\\ameno\\sound\\rb_oof.ogg"}
 player_death_sounds_db = {}
 
 -- Join addon message channel
