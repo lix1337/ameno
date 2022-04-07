@@ -98,6 +98,7 @@ frame:SetScript("OnEvent", function(self, event, loadedAddon)
             ['changeFunc'] = function(_, dropdown_val)
                 AMENOVARS.my_death_sound = dropdown_val
                 C_ChatInfo.SendAddonMessage("ameno", AMENOVARS.my_death_sound, "RAID")
+                PlaySoundFile(AMENOVARS.my_death_sound, "Master")
             end
         }
 
