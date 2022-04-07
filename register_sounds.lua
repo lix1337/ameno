@@ -13,6 +13,7 @@ LSM:Register("sound", "Ameno: MC Hurt", [[Interface\Addons\ameno\sound\mc_hurt.o
 LSM:Register("sound", "Ameno: MC Villager", [[Interface\Addons\ameno\sound\mc_villager.ogg]])
 LSM:Register("sound", "Ameno: RB Oof", [[Interface\Addons\ameno\sound\rb_oof.ogg]])
 LSM:Register("sound", "Ameno: Noin", [[Interface\Addons\ameno\sound\noin.ogg]])
+LSM:Register("sound", "Ameno: Michi Stoehnt", [[Interface\Addons\ameno\sound\michi_stoehnt.ogg]])
 
 --Pizzeria am Rewemarkt
 LSM:Register("sound", "Ameno: Brafwursigehaeck", [[Interface\Addons\ameno\sound\brafwursigehaeck.ogg]]) 
