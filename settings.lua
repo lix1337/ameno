@@ -1,12 +1,6 @@
-local addonName = ...
-
 -- subscribe to events
-local eventFrame = CreateFrame("Frame", event, InterfaceOptionsFramePanelContainer)
-eventFrame:RegisterEvent("ADDON_LOADED")
-eventFrame:RegisterEvent("PLAYER_LOGOUT")
-
--- If new subject is added, the parameter of the random() function during amenovars initiation has to be adapted to the number of items in this list
-favouriteSubjects = {'Englisch', 'Turnen', 'Mathe', 'Musik', 'Kunst'}
+local frame = CreateFrame("Frame", event, InterfaceOptionsFramePanelContainer)
+frame:RegisterEvent("ADDON_LOADED")
 
 --Create Dropdown
 --OPTS:
@@ -23,14 +17,13 @@ local function createDropdown(opts)
     local title_text = opts['title'] or ''
     local dropdown_width = 0
     local default_val = opts['defaultVal'] or ''
-    local change_func = opts['changeFunc'] or fuction(dropdown_val) 
-
+    local change_func = opts['changeFunc'] or fuction(dropdown_val)
 
     local dropdown = CreateFrame("Frame", nil, opts['parent'], 'UIDropDownMenuTemplate')
-    local dd_title = dropdown:CreateFontString(dropdown, 'OVERLAY','GameFontNormal')
-    dd_title:SetPoint("TOPLEFT",20,10)
+    local dd_title = dropdown:CreateFontString(dropdown, 'OVERLAY', 'GameFontNormal')
+    dd_title:SetPoint("TOPLEFT", 20, 10)
 
-    for _, item in pairs(menu_items) do --Sets the dropdown width to the largeest item string width
+    for _, item in pairs(menu_items) do -- Sets the dropdown width to the largeest item string width
         dd_title:SetText(item)
         local text_width = dd_title:GetStringWidth() + 20
         if text_width > dropdown_width then
@@ -45,8 +38,8 @@ local function createDropdown(opts)
     UIDropDownMenu_Initialize(dropdown, function(self, level, _)
         local info = UIDropDownMenu_CreateInfo()
         for key, val in pairs(menu_items) do
-            info.text = val;
-            if val == _lieblingsfach then 
+            info.text = val
+            if val == _lieblingsfach then
                 info.checked = true
             else
                 info.checked = false
@@ -65,54 +58,53 @@ local function createDropdown(opts)
     return dropdown
 end
 
-
-
 -- called when event is fired
-eventFrame:SetScript("OnEvent", function(self, event, loadedAddon)
-    --Addon is loaded, vars are ready
-    if (loadedAddon == addonName and event == "ADDON_LOADED") then
-        --initiate amenovars, if first login
-        if type(AMENOVARS) ~= "table" then
-            --random from 1 to number of items in favouriteSubjects -> needs to be changed manually if more items in the favouriteSubjects list
-            AMENOVARS = {lieblingsfach=favouriteSubjects[math.random(5)]}
-        end
-
-        --create global lieblingsfach
-        _lieblingsfach = AMENOVARS.lieblingsfach
-        
-
+frame:SetScript("OnEvent", function(self, event, loadedAddon)
+    -- Addon is loaded, vars are ready
+    if (loadedAddon == addon_name and event == "ADDON_LOADED") then
         -- create interface options panel
-        local panel = CreateFrame("FRAME", "ExamplePanel");
-        panel.name = "ameno";
+        local panel = CreateFrame("FRAME", "ExamplePanel")
+        panel.name = "ameno"
         local title = panel:CreateFontString("ARTWORK", nil, "GameFontNormalLarge")
-        title:SetPoint("TOP",0,-10)
+        title:SetPoint("TOP", 0, -10)
         title:SetText("AMENO")
-        
+
         -- tbi
         panel.okay = function(self)
         end
-        
-        --dropdown menu options
+
+        -- dropdown menu options
         local lieblingsfachDropDownOpts = {
             ['name'] = 'lieblingsfach',
-            ['parent']=panel,
-            ['title']='Lieblingsfach',
-            ['items'] = favouriteSubjects,
-            ['defaultVal']=_lieblingsfach,
-            ['changeFunc']= function(_, dropdown_val)
-                _lieblingsfach = dropdown_val
-            end 
+            ['parent'] = panel,
+            ['title'] = 'Lieblingsfach',
+            ['items'] = favorite_subjects,
+            ['defaultVal'] = AMENOVARS.lieblingsfach,
+            ['changeFunc'] = function(_, dropdown_val)
+                AMENOVARS.lieblingsfach = dropdown_val
+            end
         }
-        
-        --create dropdownmenu and put it in place
+
+        -- create dropdownmenu and put it in place
         lieblingsfachDropDown = createDropdown(lieblingsfachDropDownOpts)
-        lieblingsfachDropDown:SetPoint("TOPLEFT",0,-50);
+        lieblingsfachDropDown:SetPoint("TOPLEFT", 0, -50)
+
+        local deathSoundDropDownOpts = {
+            ['name'] = 'deathsound',
+            ['parent'] = panel,
+            ['title'] = 'Deathsound',
+            ['items'] = valid_death_sounds,
+            ['defaultVal'] = AMENOVARS.my_death_sound,
+            ['changeFunc'] = function(_, dropdown_val)
+                AMENOVARS.my_death_sound = dropdown_val
+                C_ChatInfo.SendAddonMessage("ameno", AMENOVARS.my_death_sound, "RAID")
+            end
+        }
+
+        deathSoundDropDown = createDropdown(deathSoundDropDownOpts)
+        deathSoundDropDown:SetPoint("TOPLEFT", 0, -100)
 
         -- add panel to interface options
-        InterfaceOptions_AddCategory(panel);
-    
-    --SAVE VARS
-    elseif( event == "PLAYER_LOGOUT") then
-        AMENOVARS.lieblingsfach = _lieblingsfach
+        InterfaceOptions_AddCategory(panel)
     end
 end)
