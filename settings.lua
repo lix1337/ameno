@@ -12,6 +12,7 @@ frame:RegisterEvent("ADDON_LOADED")
 -- source: https://jordanbenge.medium.com/creating-a-wow-dropdown-menu-in-pure-lua-db7b2f9c0364
 -- TODO: Put this in a lib
 local function createDropdown(opts)
+    optsName=opts['name']
     local dropdown_name = '$parent_' .. opts['name'] .. '_dropdown'
     local menu_items = opts['items'] or {}
     local title_text = opts['title'] or ''
@@ -39,7 +40,7 @@ local function createDropdown(opts)
         local info = UIDropDownMenu_CreateInfo()
         for key, val in pairs(menu_items) do
             info.text = val
-            if val == _lieblingsfach then
+            if val == AMENOVARS[optsName] then
                 info.checked = true
             else
                 info.checked = false
@@ -82,6 +83,10 @@ frame:SetScript("OnEvent", function(self, event, loadedAddon)
             ['defaultVal'] = AMENOVARS.lieblingsfach,
             ['changeFunc'] = function(_, dropdown_val)
                 AMENOVARS.lieblingsfach = dropdown_val
+                if(soundHandler)then
+                    StopSound(soundHandler)
+                end
+                _,soundHandler = PlaySoundFile(valid_favourite_subjects[AMENOVARS.lieblingsfach], "Master")
             end
         }
 
@@ -90,7 +95,7 @@ frame:SetScript("OnEvent", function(self, event, loadedAddon)
         lieblingsfachDropDown:SetPoint("TOPLEFT", 0, -50)
 
         local deathSoundDropDownOpts = {
-            ['name'] = 'deathsound',
+            ['name'] = 'my_death_sound',
             ['parent'] = panel,
             ['title'] = 'Deathsound',
             ['items'] = valid_death_sounds,

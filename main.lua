@@ -11,8 +11,14 @@ valid_death_sounds = {smash,
                       "Interface\\Addons\\ameno\\sound\\rb_oof.ogg",
                       "Interface\\Addons\\ameno\\sound\\michi_stoehnt.ogg"}
 player_death_sounds_db = {}
+valid_favourite_subjects={  ["Englisch"]="Interface\\Addons\\ameno\\sound\\lieblingsfach_englisch.ogg",
+                            ["Turnen"]="Interface\\Addons\\ameno\\sound\\lieblingsfach_turnen.ogg",
+                            ["Mathe"]="Interface\\Addons\\ameno\\sound\\lieblingsfach_mathe.ogg",
+                            ["Musik"]="Interface\\Addons\\ameno\\sound\\lieblingsfach_musik.ogg",
+                            ["Kunst"]="Interface\\Addons\\ameno\\sound\\lieblingsfach_kunst.ogg"}
+soundhandler=nil;
 
--- Join addon message channel
+    -- Join addon message channel
 C_ChatInfo.RegisterAddonMessagePrefix("ameno")
 
 -- Execute code on addon load
