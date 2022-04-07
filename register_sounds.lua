@@ -5,9 +5,13 @@ LSM:Register("sound", "Ameno: Ameno male", [[Interface\Addons\ameno\sound\ameno_
 LSM:Register("sound", "Ameno: Ameno female", [[Interface\Addons\ameno\sound\ameno_female.ogg]])
 LSM:Register("sound", "Ameno: Ameno Melodie no beat", [[Interface\Addons\ameno\sound\ameno_melodie_noBeat.ogg]])
 
---Spieler sounds
+--Death sounds
 LSM:Register("sound", "Ameno: Table Smash", [[Interface\Addons\ameno\sound\tableSmash.ogg]])
 LSM:Register("sound", "Ameno: Ach der Toni", [[Interface\Addons\ameno\sound\ach_der_toni.ogg]])
+LSM:Register("sound", "Ameno: MC Hit", [[Interface\Addons\ameno\sound\mc_hit.ogg]])
+LSM:Register("sound", "Ameno: MC Hurt", [[Interface\Addons\ameno\sound\mc_hurt.ogg]])
+LSM:Register("sound", "Ameno: MC Villager", [[Interface\Addons\ameno\sound\mc_villager.ogg]])
+LSM:Register("sound", "Ameno: RB Oof", [[Interface\Addons\ameno\sound\rb_oof.ogg]])
 LSM:Register("sound", "Ameno: Noin", [[Interface\Addons\ameno\sound\noin.ogg]])
 
 --Pizzeria am Rewemarkt
