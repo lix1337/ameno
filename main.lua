@@ -8,7 +8,8 @@ valid_death_sounds = {smash,
                       "Interface\\Addons\\ameno\\sound\\mc_hit.ogg",
                       "Interface\\Addons\\ameno\\sound\\mc_hurt.ogg",
                       "Interface\\Addons\\ameno\\sound\\mc_villager.ogg",
-                      "Interface\\Addons\\ameno\\sound\\rb_oof.ogg"}
+                      "Interface\\Addons\\ameno\\sound\\rb_oof.ogg",
+                      "Interface\\Addons\\ameno\\sound\\michi_stoehnt.ogg"}
 player_death_sounds_db = {}
 
 -- Join addon message channel
