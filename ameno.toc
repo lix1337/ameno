@@ -1,11 +1,16 @@
 ## Interface: 90200
 ## Title: ameno
 ## Author: Djmilfraptor
-## Version: {version}
+## Version: 1.4.6
 ## SavedVariables: AMENOVARS
 
 libs\LibStub\LibStub.lua
 libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
 embeds.xml
-settings.lua
 main.lua
+chat.lua
+achievement.lua
+death_sound.lua
+communication.lua
+settings.lua
+register_sounds.lua
