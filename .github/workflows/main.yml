@@ -34,6 +34,11 @@ jobs:
           cp embeds.xml ./ameno
           cp main.lua ./ameno
           cp settings.lua ./ameno
+          cp achievement.lua ./ameno
+          cp chat.lua ./ameno
+          cp communication.lua ./ameno
+          cp death_sound.lua ./ameno
+          cp register_sounds.lua ./ameno
           zip -r ameno-${{ steps.get_release.outputs.tag_name }}.zip ./ameno
 
       # Add archive to release
