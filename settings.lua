@@ -40,7 +40,7 @@ local function createDropdown(opts)
         local info = UIDropDownMenu_CreateInfo()
         for key, val in pairs(menu_items) do
             info.text = val
-            if val == AMENOVARS[optsName] then
+            if val == default_val then
                 info.checked = true
             else
                 info.checked = false
@@ -48,6 +48,7 @@ local function createDropdown(opts)
             info.menuList = key
             info.hasArrow = false
             info.func = function(b)
+                default_val = val;
                 UIDropDownMenu_SetSelectedValue(dropdown, b.value, b.value)
                 UIDropDownMenu_SetText(dropdown, b.value)
                 b.checked = true
