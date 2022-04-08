@@ -20,6 +20,11 @@ frame:SetScript("OnEvent", function(self, event)
         return
     end
 
+    if string.find(unit_name, "-") then
+        local minusIndex = string.find(unit_name, "-") - 1
+        unit_name = string.sub(unit_name, 1, minusIndex)
+    end
+
     -- Player not using addon, play default sound
     if player_death_sounds_db[unit_name] == nil then
         PlaySoundFile("Interface\\Addons\\ameno\\sound\\tableSmash.ogg", "Master")
