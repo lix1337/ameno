@@ -1,7 +1,3 @@
-local frame = CreateFrame("frame")
-frame:RegisterEvent("ACHIEVEMENT_EARNED")
-frame:SetScript("OnEvent", checkForAotcJailer)
-
 local function checkForAotcJailer(self, event, ...)
     if(... == 1157) then    -- duelicious for debug
         PlaySoundFile("Interface\\Addons\\ameno\\sound\\worldFirst.ogg","Master")
@@ -10,3 +6,8 @@ local function checkForAotcJailer(self, event, ...)
         PlaySoundFile("Interface\\Addons\\ameno\\sound\\worldFirst.ogg", "Master")
     end
 end
+
+local frame = CreateFrame("frame")
+frame:RegisterEvent("ACHIEVEMENT_EARNED")
+frame:SetScript("OnEvent", checkForAotcJailer)
+
