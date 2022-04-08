@@ -1,7 +1,7 @@
 -- Setup global variables
 addon_name = ...
 -- Magic versioning dont touch
-amenoversion="2.0.4"
+amenoversion="2.1.0"
 -- Magic ends
 favorite_subjects = {'Englisch', 'Turnen', 'Mathe', 'Musik', 'Kunst'}
 smash = "Interface\\Addons\\ameno\\sound\\tableSmash.ogg"
@@ -69,6 +69,35 @@ group_update_frame:SetScript("OnEvent", function(self, event)
     if event == "GROUP_ROSTER_UPDATE" then
         -- Notify everyone that i joined the group
         C_ChatInfo.SendAddonMessage("ameno", "join", "RAID")
-        C_ChatInfo.SendAddonMessage("ameno", "versionQuery-" .. amenoversion, "RAID")
+        -- Ask if there is a newer version
+        if(not imWarnedAboutMyOldAssVersion) then
+            C_ChatInfo.SendAddonMessage("ameno", "versionQuery-" .. amenoversion, "RAID")
+        end
     end
 end)
+
+-- Versioning check
+function checkIfVersionIsNewer(newVersion)
+    local returnval = false;
+    local messageMajor, messageMinor, messagePatch = string.match(newVersion, "(%d+)%.(%d+)%.(%d+)")
+    local myMajor, myMinor, myPatch = string.match(amenoversion, "(%d+)%.(%d+)%.(%d+)")
+
+    -- Convert version level strings into numbers for comparison
+    messageMajor,messageMinor,messagePatch,myMajor,myMinor,myPatch = tonumber(messageMajor), tonumber(messageMinor), tonumber(messagePatch),tonumber(myMajor),tonumber(myMinor),tonumber(myPatch)
+
+    if(myMajor>=messageMajor)then
+        if(myMinor>=messageMinor)then
+            if(myPatch>=messagePatch)then
+                return false;
+            else 
+                return true;
+            end
+        else
+            return true;
+        end
+    else
+        return true;
+    end
+
+
+end

@@ -28,27 +28,26 @@ function chat_massage_addon_callback(prefix, message, chatType, sender)
     end
 
     -- Someone asked for my version
-    if string.match(message,"versionQuery-")then
+    if string.match(message,"versionQuery-") then
         C_ChatInfo.SendAddonMessage("ameno", "versionReply-" .. amenoversion, "RAID")
+        return
     end
 
     -- Check if the replied version is newer then my own
-    if string.match(message,"versionReply-")then
+    if string.match(message,"versionReply-") then
+        if (imWarnedAboutMyOldAssVersion) then
+            return;
+        end
         local version = string.sub(message, (string.find(message, "-") + 1))
 
-        -- Put all patch levels into one number for comparison (e.g. 2.0.4 -> 204)
-        local messageMajor, messageMinor, messagePatch = string.match(message, "(%d+)%.(%d+)%.(%d+)")
-        local myMajor, myMinor, myPatch = string.match(amenoversion, "(%d+)%.(%d+)%.(%d+)")
-        local versionNumberMessage = tonumber(messageMajor .. messageMinor .. messagePatch)
-        local versionNumberMy = tonumber(myMajor .. myMinor .. myPatch)
-        
-        if ( not imWarnedAboutMyOldAssVersion and (versionNumberMessage > versionNumberMy))then
-            imWarnedAboutMyOldAssVersion=true
+        if(checkIfVersionIsNewer(message))then
+            -- My version is not up to date
             msg = "A newer version of ameno is available: " .. version .. "\nyou are running the old shit version: " .. amenoversion
             BasicMessageDialog.Text:SetText(msg)
             BasicMessageDialog:Show()
+            imWarnedAboutMyOldAssVersion=true
         end
+        return
     end
-
     player_death_sounds_db[sender] = message
 end
