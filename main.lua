@@ -1,5 +1,6 @@
 -- Setup global variables
 addon_name = ...
+amenoversion="2.0.4"
 favorite_subjects = {'Englisch', 'Turnen', 'Mathe', 'Musik', 'Kunst'}
 smash = "Interface\\Addons\\ameno\\sound\\tableSmash.ogg"
 valid_death_sounds = {smash, 
@@ -48,8 +49,14 @@ addon_loaded_frame:SetScript("OnEvent", function(self, event, loaded_addon)
             AMENOVARS.my_death_sound = smash
         end
 
+        -- Make sure I get notified about my old ass version
+        imWarnedAboutMyOldAssVersion=false
+
         -- Notify everyone that i (re-)joined the channel
         C_ChatInfo.SendAddonMessage("ameno", "join", "RAID")
+
+        -- Ask everyone for their version
+        C_ChatInfo.SendAddonMessage("ameno", "versionQuery-" .. amenoversion, "RAID")
     end
 end)
 
@@ -60,5 +67,6 @@ group_update_frame:SetScript("OnEvent", function(self, event)
     if event == "GROUP_ROSTER_UPDATE" then
         -- Notify everyone that i joined the group
         C_ChatInfo.SendAddonMessage("ameno", "join", "RAID")
+        C_ChatInfo.SendAddonMessage("ameno", "versionQuery-" .. amenoversion, "RAID")
     end
 end)
