@@ -40,7 +40,7 @@ function chat_massage_addon_callback(prefix, message, chatType, sender)
         end
         local version = string.sub(message, (string.find(message, "-") + 1))
 
-        if(checkIfVersionIsNewer(message))then
+        if(checkIfVersionIsNewer(message)==1)then
             -- My version is not up to date
             msg = "A newer version of ameno is available: " .. version .. "\nyou are running the old shit version: " .. amenoversion
             BasicMessageDialog.Text:SetText(msg)

@@ -1,7 +1,7 @@
 -- Setup global variables
 addon_name = ...
 -- Magic versioning dont touch
-amenoversion="2.1.0"
+amenoversion="2.1.1"
 -- Magic ends
 favorite_subjects = {'Englisch', 'Turnen', 'Mathe', 'Musik', 'Kunst'}
 smash = "Interface\\Addons\\ameno\\sound\\tableSmash.ogg"
@@ -78,26 +78,21 @@ end)
 
 -- Versioning check
 function checkIfVersionIsNewer(newVersion)
-    local returnval = false;
+    -- Grab all patch levels
     local messageMajor, messageMinor, messagePatch = string.match(newVersion, "(%d+)%.(%d+)%.(%d+)")
     local myMajor, myMinor, myPatch = string.match(amenoversion, "(%d+)%.(%d+)%.(%d+)")
 
-    -- Convert version level strings into numbers for comparison
-    messageMajor,messageMinor,messagePatch,myMajor,myMinor,myPatch = tonumber(messageMajor), tonumber(messageMinor), tonumber(messagePatch),tonumber(myMajor),tonumber(myMinor),tonumber(myPatch)
+    -- Put patch levels into tables
+    local messageVersions = {tonumber(messageMajor), tonumber(messageMinor), tonumber(messagePatch)}
+    local myVersions = {tonumber(myMajor), tonumber(myMinor), tonumber(myPatch)}
 
-    if(myMajor>=messageMajor)then
-        if(myMinor>=messageMinor)then
-            if(myPatch>=messagePatch)then
-                return false;
-            else 
-                return true;
-            end
-        else
-            return true;
+    for i=1,3,1 do   
+        if messageVersions[i] > myVersions[i] then
+            return 1
+        elseif (myVersions[i] > messageVersions[i])then
+            return -1
         end
-    else
-        return true;
     end
-
-
+    --Both versions are equal
+    return 0
 end
