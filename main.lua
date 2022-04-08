@@ -1,6 +1,8 @@
 -- Setup global variables
 addon_name = ...
+-- Magic versioning dont touch
 amenoversion="2.0.4"
+-- Magic ends
 favorite_subjects = {'Englisch', 'Turnen', 'Mathe', 'Musik', 'Kunst'}
 smash = "Interface\\Addons\\ameno\\sound\\tableSmash.ogg"
 valid_death_sounds = {smash, 
