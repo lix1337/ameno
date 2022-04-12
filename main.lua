@@ -1,45 +1,39 @@
 -- Setup global variables
 addon_name = ...
 -- Magic versioning dont touch
-amenoversion="2.1.1"
+amenoversion = "2.1.1"
 -- Magic ends
 favorite_subjects = {'Englisch', 'Turnen', 'Mathe', 'Musik', 'Kunst'}
 smash = "Interface\\Addons\\ameno\\sound\\tableSmash.ogg"
-valid_death_sounds = {smash, 
-                      "Interface\\Addons\\ameno\\sound\\ach_der_toni.ogg",
-                      "Interface\\Addons\\ameno\\sound\\noin.ogg",
-                      "Interface\\Addons\\ameno\\sound\\mc_hit.ogg",
+valid_death_sounds = {smash, "Interface\\Addons\\ameno\\sound\\ach_der_toni.ogg",
+                      "Interface\\Addons\\ameno\\sound\\noin.ogg", "Interface\\Addons\\ameno\\sound\\mc_hit.ogg",
                       "Interface\\Addons\\ameno\\sound\\mc_hurt.ogg",
-                      "Interface\\Addons\\ameno\\sound\\mc_villager.ogg",
-                      "Interface\\Addons\\ameno\\sound\\rb_oof.ogg",
+                      "Interface\\Addons\\ameno\\sound\\mc_villager.ogg", "Interface\\Addons\\ameno\\sound\\rb_oof.ogg",
                       "Interface\\Addons\\ameno\\sound\\michi_stoehnt.ogg"}
 player_death_sounds_db = {}
-valid_favourite_subjects={  ["Englisch"]="Interface\\Addons\\ameno\\sound\\lieblingsfach_englisch.ogg",
-                            ["Turnen"]="Interface\\Addons\\ameno\\sound\\lieblingsfach_turnen.ogg",
-                            ["Mathe"]="Interface\\Addons\\ameno\\sound\\lieblingsfach_mathe.ogg",
-                            ["Musik"]="Interface\\Addons\\ameno\\sound\\lieblingsfach_musik.ogg",
-                            ["Kunst"]="Interface\\Addons\\ameno\\sound\\lieblingsfach_kunst.ogg"}
-soundhandler=nil;
+soundhandler = nil
+AceGUI = LibStub("AceGUI-3.0")
 
-    -- Join addon message channel
+-- Join addon message channel
 C_ChatInfo.RegisterAddonMessagePrefix("ameno")
 
--- Execute code on addon load
+-- Execute code after variables are loaded (all addons are loaded at this point)
 local addon_loaded_frame = CreateFrame("FRAME")
-addon_loaded_frame:RegisterEvent("ADDON_LOADED")
+addon_loaded_frame:RegisterEvent("VARIABLES_LOADED")
 addon_loaded_frame:SetScript("OnEvent", function(self, event, loaded_addon)
     -- Wrong addon
     if loaded_addon ~= addon_name then
         return
     end
 
-    if event == "ADDON_LOADED" then
+    if event == "VARIABLES_LOADED" then
         -- Setup AMENOVARS if addon is first time used
         if type(AMENOVARS) ~= "table" then
-            AMENOVARS = {
-                lieblingsfach = favorite_subjects[math.random(5)],
-                my_death_sound = smash
-            }
+            AMENOVARS = {}
+        end
+
+        if AMENOVARS.debug_mode == nil then
+            AMENOVARS.debug_mode = false
         end
 
         -- Setup specific table values for backwards compatibility
@@ -52,7 +46,7 @@ addon_loaded_frame:SetScript("OnEvent", function(self, event, loaded_addon)
         end
 
         -- Make sure I get notified about my old ass version
-        imWarnedAboutMyOldAssVersion=false
+        imWarnedAboutMyOldAssVersion = false
 
         -- Notify everyone that i (re-)joined the channel
         C_ChatInfo.SendAddonMessage("ameno", "join", "RAID")
@@ -61,38 +55,3 @@ addon_loaded_frame:SetScript("OnEvent", function(self, event, loaded_addon)
         C_ChatInfo.SendAddonMessage("ameno", "versionQuery-" .. amenoversion, "RAID")
     end
 end)
-
--- Execute code on group change (e.g. player joins)
-local group_update_frame = CreateFrame("FRAME")
-group_update_frame:RegisterEvent("GROUP_ROSTER_UPDATE")
-group_update_frame:SetScript("OnEvent", function(self, event)
-    if event == "GROUP_ROSTER_UPDATE" then
-        -- Notify everyone that i joined the group
-        C_ChatInfo.SendAddonMessage("ameno", "join", "RAID")
-        -- Ask if there is a newer version
-        if(not imWarnedAboutMyOldAssVersion) then
-            C_ChatInfo.SendAddonMessage("ameno", "versionQuery-" .. amenoversion, "RAID")
-        end
-    end
-end)
-
--- Versioning check
-function checkIfVersionIsNewer(newVersion)
-    -- Grab all patch levels
-    local messageMajor, messageMinor, messagePatch = string.match(newVersion, "(%d+)%.(%d+)%.(%d+)")
-    local myMajor, myMinor, myPatch = string.match(amenoversion, "(%d+)%.(%d+)%.(%d+)")
-
-    -- Put patch levels into tables
-    local messageVersions = {tonumber(messageMajor), tonumber(messageMinor), tonumber(messagePatch)}
-    local myVersions = {tonumber(myMajor), tonumber(myMinor), tonumber(myPatch)}
-
-    for i=1,3,1 do   
-        if messageVersions[i] > myVersions[i] then
-            return 1
-        elseif (myVersions[i] > messageVersions[i])then
-            return -1
-        end
-    end
-    --Both versions are equal
-    return 0
-end

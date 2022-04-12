@@ -1,4 +1,9 @@
 local function chatCheck(self, event, ...)
+    -- Disabled
+    if AMENOVARS.lieblingsfach_enabled == false then
+        return
+    end
+
     local text = ...
 
     if (text == "!lieblingsfach") then

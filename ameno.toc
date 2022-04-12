@@ -13,4 +13,10 @@ achievement.lua
 death_sound.lua
 communication.lua
 settings.lua
+version.lua
 register_sounds.lua
+options\death_sound.lua
+options\debug_mode.lua
+options\gesu.lua
+options\lieblingsfach.lua
+options\options.lua
