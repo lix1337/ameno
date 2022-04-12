@@ -2,6 +2,9 @@ death_sound_prefix = "ds"
 local send_version_prefix = "sv"
 local join_prefix = "join"
 
+-- Handles if player is in dungeonbrowser-formed group
+send_to_channel = IsPartyLFG() and "INSTANCE_CHAT" or "RAID"
+
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("CHAT_MSG_ADDON")
 frame:SetScript("OnEvent", function(self, event, ...)
@@ -34,9 +37,9 @@ function chat_massage_addon_callback(prefix, message, chatType, sender)
     -- Someone joined the addon message channel
     if message == join_prefix then
         -- send version
-        C_ChatInfo.SendAddonMessage("ameno", send_version_prefix .. amenoversion, "RAID")
+        C_ChatInfo.SendAddonMessage("ameno", send_version_prefix .. amenoversion, send_to_channel)
         -- send my_death_sound
-        C_ChatInfo.SendAddonMessage("ameno", AMENOVARS.death_sound_own, "RAID")
+        C_ChatInfo.SendAddonMessage("ameno", AMENOVARS.death_sound_own, send_to_channel)
         return
     end
 
@@ -79,7 +82,7 @@ group_update_frame:RegisterEvent("GROUP_ROSTER_UPDATE")
 group_update_frame:SetScript("OnEvent", function(self, event)
     if event == "GROUP_ROSTER_UPDATE" then
         -- Notify everyone that i joined the group
-        C_ChatInfo.SendAddonMessage("ameno", "join", "RAID")
+        C_ChatInfo.SendAddonMessage("ameno", "join", send_to_channel)
     end
 end)
 
@@ -87,5 +90,5 @@ end)
 local addon_loaded_frame = CreateFrame("FRAME")
 addon_loaded_frame:RegisterEvent("VARIABLES_LOADED")
 addon_loaded_frame:SetScript("OnEvent", function(self, event, loaded_addon)
-    C_ChatInfo.SendAddonMessage("ameno", join_prefix, "RAID")
+    C_ChatInfo.SendAddonMessage("ameno", join_prefix, send_to_channel)
 end)

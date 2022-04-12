@@ -9,7 +9,7 @@ local function chatCheck(self, event, ...)
     if (text == "!lieblingsfach") then
         PlaySoundFile(AMENOVARS.lieblingsfach, "Master")
         local msg = valid_favourite_subjects[AMENOVARS.lieblingsfach] .. " ist mein Lieblingsfach!"
-        SendChatMessage(msg, "raid")
+        SendChatMessage(msg, send_to_channel)
     end
 end
 

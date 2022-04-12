@@ -41,9 +41,6 @@ addon_loaded_frame:SetScript("OnEvent", function(self, event, loaded_addon)
         imWarnedAboutMyOldAssVersion = false
 
         -- Notify everyone that i (re-)joined the channel
-        C_ChatInfo.SendAddonMessage("ameno", "join", "RAID")
-
-        -- Ask everyone for their version
-        C_ChatInfo.SendAddonMessage("ameno", "versionQuery-" .. amenoversion, "RAID")
+        C_ChatInfo.SendAddonMessage("ameno", "join", send_to_channel)
     end
 end)
