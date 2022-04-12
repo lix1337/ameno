@@ -5,6 +5,7 @@ valid_favourite_subjects = {
     ["Interface\\Addons\\ameno\\sound\\lieblingsfach_musik.ogg"] = "Musik",
     ["Interface\\Addons\\ameno\\sound\\lieblingsfach_kunst.ogg"] = "Kunst"
 }
+
 function generate_lieblingsfach_gui_elements()
     local lieblingsfach_group = AceGUI:Create("SimpleGroup")
     lieblingsfach_group:SetFullWidth(true)

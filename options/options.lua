@@ -1,16 +1,27 @@
 local function ShowSettingsMenu()
     local frame = AceGUI:Create("Frame")
     frame:SetTitle("Ameno Addon Settings")
-    frame:SetStatusText("Ameno Addon Settings")
+    frame:SetStatusText("Click on the bottom right corner to resize this window.")
     frame:SetCallback("OnClose", function(widget)
         AceGUI:Release(widget)
     end)
-    frame:SetLayout("List")
+    frame:SetLayout("Fill")
 
-    frame:AddChild(generate_death_sound_gui_elements())
-    frame:AddChild(generate_gesu_gui_elements())
-    frame:AddChild(generate_lieblingsfach_gui_elements())
-    frame:AddChild(generate_debug_mode_gui_elements())
+    local scrollcontainer = AceGUI:Create("SimpleGroup")
+    scrollcontainer:SetFullWidth(true)
+    scrollcontainer:SetFullHeight(true)
+    scrollcontainer:SetLayout("Fill")
+
+    frame:AddChild(scrollcontainer)
+
+    local scroll = AceGUI:Create("ScrollFrame")
+    scroll:SetLayout("Flow")
+    scrollcontainer:AddChild(scroll)
+
+    scroll:AddChild(generate_death_sound_gui_elements())
+    scroll:AddChild(generate_gesu_gui_elements())
+    scroll:AddChild(generate_lieblingsfach_gui_elements())
+    scroll:AddChild(generate_debug_mode_gui_elements())
 end
 
 -- Add button to interface options which opens the settings
@@ -38,4 +49,3 @@ SLASH_AMENO1 = "/ameno"
 SlashCmdList["AMENO"] = function(msg)
     ShowSettingsMenu()
 end
-
