@@ -12,7 +12,6 @@ chat.lua
 achievement.lua
 death_sound.lua
 communication.lua
-settings.lua
 version.lua
 register_sounds.lua
 options\death_sound.lua
