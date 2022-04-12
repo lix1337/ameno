@@ -7,10 +7,10 @@ local function ShowSettingsMenu()
     end)
     frame:SetLayout("List")
 
-    frame:AddChild(death_sound_group)
-    frame:AddChild(chat_command_group)
-    frame:AddChild(Lieblingsfach_group)
-    frame:AddChild(debug_mode_group)
+    frame:AddChild(generate_death_sound_gui_elements())
+    frame:AddChild(generate_gesu_gui_elements())
+    frame:AddChild(generate_lieblingsfach_gui_elements())
+    frame:AddChild(generate_debug_mode_gui_elements())
 end
 
 -- Show settings window on command

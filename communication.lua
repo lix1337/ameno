@@ -1,6 +1,5 @@
 death_sound_prefix = "ds"
 local send_version_prefix = "sv"
-local query_version_prefix = "qv"
 local join_prefix = "join"
 
 local frame = CreateFrame("Frame")

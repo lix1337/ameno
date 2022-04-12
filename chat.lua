@@ -1,7 +1,6 @@
 local function chatCheck(self, event, ...)
     -- Disabled
     if AMENOVARS.lieblingsfach_enabled == false then
-        print("i return")
         return
     end
 
