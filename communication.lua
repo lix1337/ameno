@@ -43,8 +43,8 @@ function chat_massage_addon_callback(prefix, message, chatType, sender)
 
     -- Someone send his death sound
     if string.match(message, death_sound_prefix) then
-        local sound = string.sub(message, string.len(death_sound_prefix))
-        player_death_sounds_db[sender] = message
+        local sound = string.sub(message, string.len(death_sound_prefix) + 1)
+        player_death_sounds_db[sender] = sound
 
         if AMENOVARS.debug_mode then
             print("New death sound of " .. sender .. " is " .. player_death_sounds_db[sender])
@@ -60,7 +60,7 @@ function chat_massage_addon_callback(prefix, message, chatType, sender)
             return
         end
 
-        local version = string.sub(message, string.len(send_version_prefix))
+        local version = string.sub(message, string.len(send_version_prefix) + 1)
 
         if (checkIfVersionIsNewer(message) == 1) then
             -- My version is not up to date

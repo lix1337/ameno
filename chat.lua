@@ -1,15 +1,16 @@
 local function chatCheck(self, event, ...)
     -- Disabled
     if AMENOVARS.lieblingsfach_enabled == false then
+        print("i return")
         return
     end
 
     local text = ...
 
     if (text == "!lieblingsfach") then
-        PlaySoundFile(valid_favourite_subjects[AMENOVARS.lieblingsfach], "Master")
-        local message = AMENOVARS.lieblingsfach .. " ist mein Lieblingsfach!"
-        SendChatMessage(message, "raid")
+        PlaySoundFile(AMENOVARS.lieblingsfach, "Master")
+        local msg = valid_favourite_subjects[AMENOVARS.lieblingsfach] .. " ist mein Lieblingsfach!"
+        SendChatMessage(msg, "raid")
     end
 end
 

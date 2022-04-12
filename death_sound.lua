@@ -30,7 +30,7 @@ frame:SetScript("OnEvent", function(self, event)
     end
 
     -- Player not using addon, play default sound
-    if player_death_sounds_db[unit_name] == nil or AMENOVARS.allow_custom_death_sounds == false then
+    if player_death_sounds_db[unit_name] == nil or AMENOVARS.custom_death_sounds_enabled == false then
         PlaySoundFile(AMENOVARS.death_sound_default, "Master")
     else
         PlaySoundFile(player_death_sounds_db[unit_name], "Master")
