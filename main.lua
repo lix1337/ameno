@@ -3,15 +3,7 @@ addon_name = ...
 -- Magic versioning dont touch
 amenoversion = "2.1.1"
 -- Magic ends
-favorite_subjects = {'Englisch', 'Turnen', 'Mathe', 'Musik', 'Kunst'}
-smash = "Interface\\Addons\\ameno\\sound\\tableSmash.ogg"
-valid_death_sounds = {smash, "Interface\\Addons\\ameno\\sound\\ach_der_toni.ogg",
-                      "Interface\\Addons\\ameno\\sound\\noin.ogg", "Interface\\Addons\\ameno\\sound\\mc_hit.ogg",
-                      "Interface\\Addons\\ameno\\sound\\mc_hurt.ogg",
-                      "Interface\\Addons\\ameno\\sound\\mc_villager.ogg", "Interface\\Addons\\ameno\\sound\\rb_oof.ogg",
-                      "Interface\\Addons\\ameno\\sound\\michi_stoehnt.ogg"}
 player_death_sounds_db = {}
-soundhandler = nil
 AceGUI = LibStub("AceGUI-3.0")
 
 -- Join addon message channel

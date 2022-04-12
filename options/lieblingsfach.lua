@@ -29,12 +29,15 @@ variables_loaded_frame:SetScript("OnEvent", function(self, event)
         end)
 
         local lieblingsfach_dropdown = AceGUI:Create("Dropdown")
-        lieblingsfach_dropdown:SetLabel("Default Player Death Sound")
+        lieblingsfach_dropdown:SetLabel("My Lieblingsfach")
         lieblingsfach_dropdown:SetList(valid_favourite_subjects)
         lieblingsfach_dropdown:SetValue(AMENOVARS.lieblingsfach)
         lieblingsfach_dropdown:SetCallback("OnValueChanged", function()
+            if(soundHandler)then
+                StopSound(soundHandler)
+            end
             AMENOVARS.lieblingsfach = lieblingsfach_dropdown:GetValue()
-            PlaySoundFile(AMENOVARS.lieblingsfach, "Master")
+            _,soundHandler = PlaySoundFile(AMENOVARS.lieblingsfach, "Master")
         end)
 
         Lieblingsfach_group:AddChild(lieblingsfach_heading)
