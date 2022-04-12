@@ -3,11 +3,6 @@ frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 frame:SetScript("OnEvent", function(self, event)
     local _, subevent, _, _, _, _, _, _, unit_name, _, _, _, _ = CombatLogGetCurrentEventInfo()
 
-    -- Playing deathsounds is not enabled
-    if AMENOVARS.death_sound_enabled == false then
-        return
-    end
-
     -- Wrong event
     if subevent ~= "UNIT_DIED" then
         return
@@ -20,6 +15,11 @@ frame:SetScript("OnEvent", function(self, event)
 
     -- Not a real death
     if UnitIsFeignDeath(unit_name) == true then
+        return
+    end
+
+    -- Playing deathsounds is not enabled
+    if AMENOVARS.death_sound_enabled == false then
         return
     end
 

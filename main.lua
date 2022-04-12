@@ -11,30 +11,50 @@ C_ChatInfo.RegisterAddonMessagePrefix("ameno")
 
 -- Execute code after variables are loaded (all addons are loaded at this point)
 local addon_loaded_frame = CreateFrame("FRAME")
-addon_loaded_frame:RegisterEvent("VARIABLES_LOADED")
+addon_loaded_frame:RegisterEvent("ADDON_LOADED")
 addon_loaded_frame:SetScript("OnEvent", function(self, event, loaded_addon)
     -- Wrong addon
     if loaded_addon ~= addon_name then
         return
     end
 
-    if event == "VARIABLES_LOADED" then
+    if event == "ADDON_LOADED" then
         -- Setup AMENOVARS if addon is first time used
         if type(AMENOVARS) ~= "table" then
             AMENOVARS = {}
         end
 
-        if AMENOVARS.debug_mode == nil then
-            AMENOVARS.debug_mode = false
-        end
-
         -- Setup specific table values for backwards compatibility
         if AMENOVARS.lieblingsfach == nil then
-            AMENOVARS.lieblingsfach = favorite_subjects[math.random(5)]
+            AMENOVARS.lieblingsfach = "Interface\\Addons\\ameno\\sound\\lieblingsfach_englisch.ogg"
         end
 
-        if AMENOVARS.my_death_sound == nil then
-            AMENOVARS.my_death_sound = smash
+        if AMENOVARS.death_sound_own == nil then
+            AMENOVARS.death_sound_own = "Interface\\Addons\\ameno\\sound\\tableSmash.ogg"
+        end
+
+        if AMENOVARS.death_sound_default == nil then
+            AMENOVARS.death_sound_default = "Interface\\Addons\\ameno\\sound\\tableSmash.ogg"
+        end
+
+        if AMENOVARS.death_sound_enabled == nil then
+            AMENOVARS.death_sound_enabled = true
+        end
+
+        if AMENOVARS.custom_death_sounds_enabled == nil then
+            AMENOVARS.custom_death_sounds_enabled = true
+        end
+
+        if AMENOVARS.react_to_gesu == nil then
+            AMENOVARS.react_to_gesu = true
+        end
+
+        if AMENOVARS.gesu_message == nil then
+            AMENOVARS.gesu_message = "187, wo ist nur der gesu geblieben?"
+        end
+
+        if AMENOVARS.lieblingsfach_enabled == nil then
+            AMENOVARS.lieblingsfach_enabled = true
         end
 
         -- Make sure I get notified about my old ass version
