@@ -34,10 +34,11 @@ jobs:
           cp -R libs ./ameno
           cp -R sound ./ameno
           cp -R background ./ameno
+          cp -R options ./ameno
           cp ameno.toc ./ameno
           cp embeds.xml ./ameno
           cp main.lua ./ameno
-          cp settings.lua ./ameno
+          cp version.lua ./ameno
           cp achievement.lua ./ameno
           cp chat.lua ./ameno
           cp communication.lua ./ameno
