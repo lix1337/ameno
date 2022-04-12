@@ -45,10 +45,10 @@ LSM:Register("sound", "Ameno: Was ist dein Lieblingsfach", [[Interface\Addons\am
 
 --other stuff
 LSM:Register("sound", "Ameno: World First", [[Interface\Addons\ameno\sound\worldFirst.ogg]]) 
-LSM:Register("sound", "Ameno: ???", [[Interface\Addons\ameno\sound\fragezeichenFragezeichenFragezeichen.ogg.ogg]]) 
 
 --music
 LSM:Register("sound", "Ameno: Geil, Geil, Geil", [[Interface\Addons\ameno\sound\geilgeilgeil.ogg]])
+LSM:Register("sound", "Ameno: Marius", [[Interface\Addons\ameno\sound\marius.ogg]])
 
 --background
 LSM:Register("background", "Carlos Matos", [[Interface\Addons\ameno\background\carlosMatos.tga]])
