@@ -39,7 +39,7 @@ function chat_massage_addon_callback(prefix, message, chatType, sender)
         -- send version
         C_ChatInfo.SendAddonMessage("ameno", send_version_prefix .. amenoversion, send_to_channel)
         -- send my_death_sound
-        C_ChatInfo.SendAddonMessage("ameno", AMENOVARS.death_sound_own, send_to_channel)
+        C_ChatInfo.SendAddonMessage("ameno", death_sound_prefix .. AMENOVARS.death_sound_own, send_to_channel)
         return
     end
 
