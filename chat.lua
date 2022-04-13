@@ -23,6 +23,8 @@ frame1:RegisterEvent("CHAT_MSG_PARTY_LEADER")
 frame1:RegisterEvent("CHAT_MSG_RAID")
 frame1:RegisterEvent("CHAT_MSG_RAID_LEADER")
 frame1:SetScript("OnEvent", function(self, event, ...)
+    local text = ...   
+
     -- Disabled
     if AMENOVARS.react_to_gesu == false then
         return
@@ -37,21 +39,26 @@ frame1:SetScript("OnEvent", function(self, event, ...)
     if event == "CHAT_MSG_RAID" or event == "CHAT_MSG_RAID_LEADER" then
         channel = "raid"
     end
-    
+
+    if channel == nil then
+        return
+    end
+
+    if text ~= "!gesu" then
+        return
+    end
+        
     -- Can only react every 60 seconds
     if time() - last_played < 60 then
         return
     end
 
-    local text = ...
+    SendChatMessage(AMENOVARS.gesu_message, channel)
 
-    if text == "!gesu" and channel then
-        SendChatMessage(AMENOVARS.gesu_message, channel)
-        
-        if AMENOVARS.gesu_sound then
-            PlaySoundFile("Interface\\Addons\\ameno\\sound\\marius.ogg", "Master")
-        end
-            
-        last_played = time()
+    if AMENOVARS.gesu_sound then
+        PlaySoundFile("Interface\\Addons\\ameno\\sound\\marius.ogg", "Master")
     end
+
+    -- update timestamp
+    last_played = time()
 end)
