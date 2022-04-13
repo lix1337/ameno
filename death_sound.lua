@@ -29,8 +29,14 @@ frame:SetScript("OnEvent", function(self, event)
         unit_name = string.sub(unit_name, 1, minusIndex)
     end
 
+    -- Custom sounds not allowed
+    if AMENOVARS.custom_death_sounds_enabled == false then
+        PlaySoundFile(AMENOVARS.death_sound_default, "Master")
+        return
+    end
+
     -- Player not using addon, play default sound
-    if player_death_sounds_db[unit_name] == nil or AMENOVARS.custom_death_sounds_enabled == false then
+    if player_death_sounds_db[unit_name] == nil then
         PlaySoundFile(AMENOVARS.death_sound_default, "Master")
     else
         PlaySoundFile(player_death_sounds_db[unit_name], "Master")
