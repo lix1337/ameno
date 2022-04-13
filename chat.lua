@@ -15,6 +15,8 @@ frame:SetScript("OnEvent", function(self, event, ...)
     end
 end)
 
+local last_played = 0
+
 local frame1 = CreateFrame("FRAME")
 frame1:RegisterEvent("CHAT_MSG_PARTY")
 frame1:RegisterEvent("CHAT_MSG_PARTY_LEADER")
@@ -35,6 +37,11 @@ frame1:SetScript("OnEvent", function(self, event, ...)
     if event == "CHAT_MSG_RAID" or event == "CHAT_MSG_RAID_LEADER" then
         channel = "raid"
     end
+    
+    -- Can only react every 60 seconds
+    if time() - last_played < 60 then
+        return
+    end
 
     local text = ...
 
@@ -44,5 +51,7 @@ frame1:SetScript("OnEvent", function(self, event, ...)
         if AMENOVARS.gesu_sound then
             PlaySoundFile("Interface\\Addons\\ameno\\sound\\marius.ogg", "Master")
         end
+            
+        last_played = time()
     end
 end)
