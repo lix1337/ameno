@@ -1,9 +1,13 @@
 -- Setup global variables
 addon_name = ...
+
 -- Magic versioning dont touch
 amenoversion = "2.1.1"
 -- Magic ends
+
 player_death_sounds_db = {}
+
+-- Reference to libs
 AceGUI = LibStub("AceGUI-3.0")
 AceTimer = LibStub("AceTimer-3.0")
 
@@ -56,6 +60,14 @@ addon_loaded_frame:SetScript("OnEvent", function(self, event, loaded_addon)
 
         if AMENOVARS.lieblingsfach_enabled == nil then
             AMENOVARS.lieblingsfach_enabled = true
+        end
+
+        if AMENOVARS.play_pull_timer_sounds == nil then
+            AMENOVARS.play_pull_timer_sounds = false
+        end
+
+        if AMENOVARS.pull_timer == nil then
+            AMENOVARS.pull_timer = "monte_half_wrong"
         end
 
         -- Make sure I get notified about my old ass version
