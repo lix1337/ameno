@@ -1,3 +1,5 @@
+local soundHandler
+
 valid_favourite_subjects = {
     ["Interface\\Addons\\ameno\\sound\\lieblingsfach_englisch.ogg"] = "Englisch",
     ["Interface\\Addons\\ameno\\sound\\lieblingsfach_turnen.ogg"] = "Turnen",

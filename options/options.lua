@@ -22,6 +22,7 @@ local function ShowSettingsMenu()
     scroll:AddChild(generate_gesu_gui_elements())
     scroll:AddChild(generate_lieblingsfach_gui_elements())
     scroll:AddChild(generate_pull_timer_gui_elements())
+    scroll:AddChild(generate_lust_gui_elements())
     scroll:AddChild(generate_debug_mode_gui_elements())
 end
 

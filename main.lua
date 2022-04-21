@@ -10,6 +10,7 @@ player_death_sounds_db = {}
 -- Reference to libs
 AceGUI = LibStub("AceGUI-3.0")
 AceTimer = LibStub("AceTimer-3.0")
+LSM = LibStub("LibSharedMedia-3.0")
 
 -- Join addon message channel
 C_ChatInfo.RegisterAddonMessagePrefix("ameno")
@@ -68,6 +69,14 @@ addon_loaded_frame:SetScript("OnEvent", function(self, event, loaded_addon)
 
         if AMENOVARS.pull_timer == nil then
             AMENOVARS.pull_timer = "monte_half_wrong"
+        end
+
+        if AMENOVARS.lust_sound_enabled == nil then
+            AMENOVARS.lust_sound_enabled = true
+        end
+
+        if AMENOVARS.lust_sound == nil then
+            AMENOVARS.lust_sound = "Interface\\Addons\\ameno\\sound\\geilgeilgeil.ogg"
         end
 
         -- Make sure I get notified about my old ass version

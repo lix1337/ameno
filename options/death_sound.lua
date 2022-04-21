@@ -6,6 +6,7 @@ valid_death_sounds = {
     ["Interface\\Addons\\ameno\\sound\\mc_hurt.ogg"] = "MC Hurt",
     ["Interface\\Addons\\ameno\\sound\\mc_villager.ogg"] = "MC Villager",
     ["Interface\\Addons\\ameno\\sound\\rb_oof.ogg"] = "RB Oof",
+    ["Interface\\Addons\\ameno\\sound\\flash.ogg"] = "Flash",
     ["Interface\\Addons\\ameno\\sound\\michi_stoehnt.ogg"] = "Michi Stoehnt"
 }
 
