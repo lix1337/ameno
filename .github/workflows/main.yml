@@ -31,19 +31,7 @@ jobs:
       - name: Create Archive
         run: |
           mkdir ameno
-          cp -R libs ./ameno
-          cp -R sound ./ameno
-          cp -R background ./ameno
-          cp -R options ./ameno
-          cp ameno.toc ./ameno
-          cp embeds.xml ./ameno
-          cp main.lua ./ameno
-          cp version.lua ./ameno
-          cp achievement.lua ./ameno
-          cp chat.lua ./ameno
-          cp communication.lua ./ameno
-          cp death_sound.lua ./ameno
-          cp register_sounds.lua ./ameno
+          rsync -a --exclude=/ameno --exclude=.gitignore -- exclude=README.md --exclude=LICENSE --exclude=/.github ./ ./ameno
           zip -r ameno-${{ steps.get_release.outputs.tag_name }}.zip ./ameno
 
       # Add archive to release
