@@ -19,7 +19,7 @@ function generate_lieblingsfach_gui_elements()
     lieblingsfach_check_box:SetFullWidth(true)
     lieblingsfach_check_box:SetLabel("Enable Lieblingsfach Sound")
     lieblingsfach_check_box:SetDescription(
-        "If not enabled, no sound will play and no message will be written on !lieblingsfach.")
+        "If enabled, a sound will play and a message will be written when the raidleader writes !lieblingsfach.")
     lieblingsfach_check_box:SetValue(AMENOVARS.lieblingsfach_enabled)
     lieblingsfach_check_box:SetCallback("OnValueChanged", function()
         AMENOVARS.lieblingsfach_enabled = lieblingsfach_check_box:GetValue()

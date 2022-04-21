@@ -2,4 +2,5 @@
 	<Script file="libs\LibSharedMedia-3.0\LibSharedMedia-3.0.lua"/>
 	<Script file="Libs\LibStub\LibStub.lua"/>
 	<Include file="Libs\AceGUI-3.0\AceGUI-3.0.xml"/>
+	<Include file="Libs\AceTimer-3.0\AceTimer-3.0.xml"/>
 </Ui>

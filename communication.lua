@@ -82,7 +82,7 @@ group_update_frame:RegisterEvent("GROUP_ROSTER_UPDATE")
 group_update_frame:SetScript("OnEvent", function(self, event)
     if event == "GROUP_ROSTER_UPDATE" then
         -- Notify everyone that i joined the group
-        C_ChatInfo.SendAddonMessage("ameno", "join", send_to_channel)
+        C_ChatInfo.SendAddonMessage("ameno", join_prefix, send_to_channel)
     end
 end)
 

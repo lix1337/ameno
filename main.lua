@@ -5,6 +5,7 @@ amenoversion = "2.1.1"
 -- Magic ends
 player_death_sounds_db = {}
 AceGUI = LibStub("AceGUI-3.0")
+AceTimer = LibStub("AceTimer-3.0")
 
 -- Join addon message channel
 C_ChatInfo.RegisterAddonMessagePrefix("ameno")
