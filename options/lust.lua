@@ -33,7 +33,6 @@ function generate_lust_gui_elements()
             StopSound(soundhandler)
         end
         AMENOVARS.lust_sound = lust_dropdown:GetValue()
-        print(lust_dropdown:GetValue())
         _, soundhandler = PlaySoundFile(AMENOVARS.lust_sound, "Master")
     end)
 
