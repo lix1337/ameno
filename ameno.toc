@@ -14,8 +14,10 @@ death_sound.lua
 communication.lua
 version.lua
 register_sounds.lua
+pull_timer.lua
 options\death_sound.lua
 options\debug_mode.lua
 options\gesu.lua
 options\lieblingsfach.lua
+options\pull_timer.lua
 options\options.lua
