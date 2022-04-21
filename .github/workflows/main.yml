@@ -31,7 +31,7 @@ jobs:
       - name: Create Archive
         run: |
           mkdir ameno
-          rsync -a --exclude=/ameno --exclude=.gitignore -- exclude=README.md --exclude=LICENSE --exclude=/.github ./ ./ameno
+          rsync -a --exclude=/ameno --exclude=.gitignore --exclude=README.md --exclude=LICENSE --exclude=/.github ./ ./ameno
           zip -r ameno-${{ steps.get_release.outputs.tag_name }}.zip ./ameno
 
       # Add archive to release
