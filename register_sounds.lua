@@ -13,6 +13,8 @@ LSM:Register("sound", "Ameno: RB Oof", [[Interface\Addons\ameno\sound\rb_oof.ogg
 LSM:Register("sound", "Ameno: Noin", [[Interface\Addons\ameno\sound\noin.ogg]])
 LSM:Register("sound", "Ameno: Michi Stoehnt", [[Interface\Addons\ameno\sound\michi_stoehnt.ogg]])
 LSM:Register("sound", "Ameno: Flash", [[Interface\Addons\ameno\sound\flash.ogg]])
+LSM:Register("sound", "Ameno: Was ist das", [[Interface\Addons\ameno\sound\was_ist_das.ogg]])
+LSM:Register("sound", "Ameno: Wallah Krise", [[Interface\Addons\ameno\sound\wallah_krise.ogg]])
 
 -- Pizzeria am Rewemarkt
 LSM:Register("sound", "Ameno: Brafwursigehaeck", [[Interface\Addons\ameno\sound\brafwursigehaeck.ogg]])
@@ -45,6 +47,8 @@ LSM:Register("sound", "Ameno: Was ist dein Lieblingsfach", [[Interface\Addons\am
 -- other stuff
 LSM:Register("sound", "Ameno: World First", [[Interface\Addons\ameno\sound\worldFirst.ogg]])
 LSM:Register("sound", "Ameno: ???", [[Interface\Addons\ameno\sound\fragezeichenFragezeichenFragezeichen.ogg]])
+LSM:Register("sound", "Ameno: Ey Malla", [[Interface\Addons\ameno\sound\ey_malla.ogg]])
+LSM:Register("sound", "Ameno: Absurd", [[Interface\Addons\ameno\sound\absurd.ogg]])
 
 -- music
 LSM:Register("sound", "Ameno: Geil, Geil, Geil", [[Interface\Addons\ameno\sound\geilgeilgeil.ogg]])
