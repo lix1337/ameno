@@ -31,7 +31,6 @@ frame:SetScript("OnEvent", function(self, event, ...)
 
         -- lust found
         if expiration_time ~= nil then
-            print(name, expiration_time, last_lust)
 
             -- check if lust is new
             if last_lust ~= expiration_time then
