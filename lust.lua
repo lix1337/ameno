@@ -1,6 +1,6 @@
 local lust_auras = {
-    ["Heroism"] = "Sated",
-    ["Bloodlust"] = "Exhaustion",
+    ["Heroism"] = "Exhaustion",
+    ["Bloodlust"] = "Sated",
     ["Time Warp"] = "Temporal Displacement",
     ["Primal Rage"] = "Fatigued",
     ["Drums of Fury"] = "Exhaustion",
@@ -8,6 +8,8 @@ local lust_auras = {
     ["Drums of the Maelstrom"] = "Exhaustion",
     ["Drums of Deathly Ferocity"] = "Exhaustion"
 }
+
+local last_lust = nil
 
 local frame = CreateFrame("FRAME")
 frame:RegisterEvent("UNIT_AURA")
@@ -25,12 +27,16 @@ frame:SetScript("OnEvent", function(self, event, ...)
     end
 
     for lust in pairs(lust_auras) do
-        -- Check if any aura in list exists on player
-        if AuraUtil.FindAuraByName(lust, "player") then
+        local name, _, _, _, _, expiration_time = AuraUtil.FindAuraByName(lust, "player")
 
-            -- Check if player has corresponding debuff. If not, the lust aura is new
-            if AuraUtil.FindAuraByName(lust_auras[lust], "player", "HARMFUL") == nil then
+        -- lust found
+        if expiration_time ~= nil then
+            print(name, expiration_time, last_lust)
+
+            -- check if lust is new
+            if last_lust ~= expiration_time then
                 PlaySoundFile(AMENOVARS.lust_sound, "Master")
+                last_lust = expiration_time
             end
 
             return
