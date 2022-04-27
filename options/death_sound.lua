@@ -8,7 +8,8 @@ valid_death_sounds = {
     ["Interface\\Addons\\ameno\\sound\\rb_oof.ogg"] = "RB Oof",
     ["Interface\\Addons\\ameno\\sound\\flash.ogg"] = "Flash",
     ["Interface\\Addons\\ameno\\sound\\michi_stoehnt.ogg"] = "Michi Stoehnt",
-    ["Interface\\Addons\\ameno\\sound\\wallah_krise.ogg"] = "Wallah Krise"
+    ["Interface\\Addons\\ameno\\sound\\wallah_krise.ogg"] = "Wallah Krise",
+    ["Interface\\Addons\\ameno\\sound\\was_ist_das.ogg"] = "Was ist das"
 }
 
 function generate_death_sound_gui_elements()
