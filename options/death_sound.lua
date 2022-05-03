@@ -63,7 +63,7 @@ function generate_death_sound_gui_elements()
     death_sound_own_dropdown:SetCallback("OnValueChanged", function()
         AMENOVARS.death_sound_own = death_sound_own_dropdown:GetValue()
         PlaySoundFile(AMENOVARS.death_sound_own, "Master")
-        C_ChatInfo.SendAddonMessage("ameno", death_sound_prefix .. AMENOVARS.death_sound_own, send_to_channel)
+        send_addon_message(death_sound_prefix .. AMENOVARS.death_sound_own)
     end)
 
     death_sound_dropdown_group:AddChild(death_sound_default_dropdown)

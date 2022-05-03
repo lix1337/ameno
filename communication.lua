@@ -3,6 +3,8 @@ local send_version_prefix = "sv"
 local join_prefix = "join"
 local ignored_player_prefix = "ip"
 
+local warned_about_old_version = false
+
 -- Handles if player is in dungeonbrowser-formed group
 send_to_channel = IsPartyLFG() and "INSTANCE_CHAT" or "RAID"
 
@@ -38,9 +40,9 @@ function chat_massage_addon_callback(prefix, message, chatType, sender)
     -- Someone joined the addon message channel
     if message == join_prefix then
         -- send version
-        C_ChatInfo.SendAddonMessage("ameno", send_version_prefix .. amenoversion, send_to_channel)
+        send_addon_message(send_version_prefix .. amenoversion)
         -- send my_death_sound
-        C_ChatInfo.SendAddonMessage("ameno", death_sound_prefix .. AMENOVARS.death_sound_own, send_to_channel)
+        send_addon_message(death_sound_prefix .. AMENOVARS.death_sound_own)
         return
     end
 
@@ -48,30 +50,25 @@ function chat_massage_addon_callback(prefix, message, chatType, sender)
     if string.match(message, death_sound_prefix) then
         local sound = string.sub(message, string.len(death_sound_prefix) + 1)
         player_death_sounds_db[sender] = sound
-
-        if AMENOVARS.debug_mode then
-            print("New death sound of " .. sender .. " is " .. player_death_sounds_db[sender])
-        end
-
         return
     end
 
     -- Someone send his addon version
     -- Check if the replied version is newer then my own
     if string.match(message, send_version_prefix) then
-        if (imWarnedAboutMyOldAssVersion) then
+        if warned_about_old_version then
             return
         end
 
         local version = string.sub(message, string.len(send_version_prefix) + 1)
 
-        if (checkIfVersionIsNewer(message) == 1) then
+        if checkIfVersionIsNewer(message) == 1 then
             -- My version is not up to date
             local msg = "A newer version of ameno is available: " .. version ..
                             "\nyou are running the old shit version: " .. amenoversion
             BasicMessageDialog.Text:SetText(msg)
             BasicMessageDialog:Show()
-            imWarnedAboutMyOldAssVersion = true
+            warned_about_old_version = true
         end
         return
     end
@@ -90,7 +87,7 @@ group_update_frame:RegisterEvent("GROUP_ROSTER_UPDATE")
 group_update_frame:SetScript("OnEvent", function(self, event)
     if event == "GROUP_ROSTER_UPDATE" then
         -- Notify everyone that i joined the group
-        C_ChatInfo.SendAddonMessage("ameno", join_prefix, send_to_channel)
+        send_addon_message(join_prefix)
     end
 end)
 
@@ -98,17 +95,17 @@ end)
 local addon_loaded_frame = CreateFrame("FRAME")
 addon_loaded_frame:RegisterEvent("VARIABLES_LOADED")
 addon_loaded_frame:SetScript("OnEvent", function(self, event, loaded_addon)
-    C_ChatInfo.SendAddonMessage("ameno", join_prefix, send_to_channel)
+    send_addon_message(join_prefix)
 end)
 
 -- Send warning that a new joined player is ignored by me
 local system_message_frame = CreateFrame("Frame")
 system_message_frame:RegisterEvent("CHAT_MSG_SYSTEM")
 system_message_frame:SetScript("OnEvent", function(self, event, message)
-    local isPlayerInRaid=UnitInRaid("player")
+    local isPlayerInRaid = UnitInRaid("player")
     joinPartyPattern = gsub(ERR_JOINED_GROUP_S, "%%s", "(.+)")
-    if(isPlayerInRaid == 1) then
-        if(send_to_channel == "RAID") then
+    if (isPlayerInRaid == 1) then
+        if (send_to_channel == "RAID") then
             joinPartyPattern = gsub(ERR_RAID_MEMBER_ADDED_S, "%%s", "(.+)")
         else
             joinPartyPattern = gsub(ERR_INSTANCE_GROUP_ADDED_S, "%%s", "(.+)")
@@ -116,8 +113,29 @@ system_message_frame:SetScript("OnEvent", function(self, event, message)
     end
     local name = strmatch(message, joinPartyPattern)
     if name then
-        if(isPlayerIgnored(name)) then
-            C_ChatInfo.SendAddonMessage("ameno", ignored_player_prefix .. name, send_to_channel)
+        if (isPlayerIgnored(name)) then
+            send_addon_message(ignored_player_prefix .. name)
         end
     end
 end)
+
+function send_addon_message(message)
+    local channel = nil
+
+    -- Determine channel to send in
+    if IsInGroup(LE_PARTY_CATEGORY_INSTANCE) then
+        channel = "INSTANCE_CHAT"
+    elseif IsInRaid() then
+        channel = "RAID"
+    elseif IsInGroup() then
+        channel = "PARTY"
+    else
+        channel = "SELF"
+    end
+
+    if AMENOVARS.debug_mode then
+        print("ameno", message, channel)
+    end
+
+    C_ChatInfo.SendAddonMessage("ameno", message, channel)
+end

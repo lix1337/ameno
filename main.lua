@@ -2,7 +2,7 @@
 addon_name = ...
 
 -- Magic versioning dont touch
-amenoversion = "9.9.9"
+amenoversion = "2.5.0"
 -- Magic ends
 
 player_death_sounds_db = {}
@@ -79,10 +79,7 @@ addon_loaded_frame:SetScript("OnEvent", function(self, event, loaded_addon)
             AMENOVARS.lust_sound = "Interface\\Addons\\ameno\\sound\\geilgeilgeil.ogg"
         end
 
-        -- Make sure I get notified about my old ass version
-        imWarnedAboutMyOldAssVersion = false
-
         -- Notify everyone that i (re-)joined the channel
-        C_ChatInfo.SendAddonMessage("ameno", "join", send_to_channel)
+        send_addon_message("join")
     end
 end)
