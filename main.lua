@@ -2,7 +2,7 @@
 addon_name = ...
 
 -- Magic versioning dont touch
-amenoversion = "2.5.0"
+amenoversion = "9.9.9"
 -- Magic ends
 
 player_death_sounds_db = {}
