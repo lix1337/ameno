@@ -1,6 +1,7 @@
 death_sound_prefix = "ds"
 local send_version_prefix = "sv"
 local join_prefix = "join"
+local ignored_player_prefix = "ip"
 
 -- Handles if player is in dungeonbrowser-formed group
 send_to_channel = IsPartyLFG() and "INSTANCE_CHAT" or "RAID"
@@ -74,6 +75,13 @@ function chat_massage_addon_callback(prefix, message, chatType, sender)
         end
         return
     end
+
+    -- Someone joined while being on the ignore list of an addon user
+    if string.match(message, ignored_player_prefix) then
+        local ignoredPlayer = string.sub(message, string.len(ignored_player_prefix) + 1)
+        print("|cffFF0000Player " .. ignoredPlayer .. " is ignored by " .. sender)
+        return
+    end
 end
 
 -- Execute code on group change (e.g. player joins)
@@ -91,4 +99,25 @@ local addon_loaded_frame = CreateFrame("FRAME")
 addon_loaded_frame:RegisterEvent("VARIABLES_LOADED")
 addon_loaded_frame:SetScript("OnEvent", function(self, event, loaded_addon)
     C_ChatInfo.SendAddonMessage("ameno", join_prefix, send_to_channel)
+end)
+
+-- Send warning that a new joined player is ignored by me
+local system_message_frame = CreateFrame("Frame")
+system_message_frame:RegisterEvent("CHAT_MSG_SYSTEM")
+system_message_frame:SetScript("OnEvent", function(self, event, message)
+    local isPlayerInRaid=UnitInRaid("player")
+    joinPartyPattern = gsub(ERR_JOINED_GROUP_S, "%%s", "(.+)")
+    if(isPlayerInRaid == 1) then
+        if(send_to_channel == "RAID") then
+            joinPartyPattern = gsub(ERR_RAID_MEMBER_ADDED_S, "%%s", "(.+)")
+        else
+            joinPartyPattern = gsub(ERR_INSTANCE_GROUP_ADDED_S, "%%s", "(.+)")
+        end
+    end
+    local name = strmatch(message, joinPartyPattern)
+    if name then
+        if(isPlayerIgnored(name)) then
+            C_ChatInfo.SendAddonMessage("ameno", ignored_player_prefix .. name, send_to_channel)
+        end
+    end
 end)

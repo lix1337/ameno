@@ -23,3 +23,4 @@ options\pull_timer.lua
 options\lust.lua
 options\options.lua
 lust.lua
+ignore.lua
